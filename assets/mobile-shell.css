@@ -1,0 +1,31 @@
+/* V1.4.4: The actual PC sidebar and navigation are reused on phones.
+   No second feature-reduced mobile UI is substituted. */
+.masa-mobile-bar,.masa-mobile-shade{display:none}
+@media (max-width:980px){
+ .app{display:block;min-height:100dvh}
+ .mobile-menu{display:none!important} /* Duplicate legacy nav stays in DOM for old plugin bindings */
+ .masa-mobile-bar{display:flex;position:sticky;top:0;z-index:1001;align-items:center;gap:10px;
+   padding:calc(7px + env(safe-area-inset-top)) 12px 8px;
+   background:#081526;border-bottom:1px solid #214c6a;min-height:56px;box-shadow:0 6px 22px #0008}
+ .masa-mobile-bar .masa-menu-trigger{font-size:20px;min-width:45px;height:45px;padding:0;
+   border:1px solid #3480a6;border-radius:10px;background:#12344e;color:#f0fbff;cursor:pointer}
+ .masa-mobile-bar .masa-mobile-brand{min-width:0;flex:1;font-size:14px;font-weight:800;letter-spacing:.2px;color:#e8f6ff}
+ .masa-mobile-bar .masa-mobile-brand small{display:block;color:#83b0ce;font-size:10px;font-weight:500}
+ .masa-mobile-bar .masa-quick-chat{background:#15425b;color:#e6faff;border:1px solid #36779a;
+   border-radius:9px;min-height:42px;padding:0 10px;font-size:12px}
+ .sidebar{display:flex!important;position:fixed;left:0;top:0;bottom:0;z-index:1011;
+   width:min(86vw,330px);height:100dvh;transform:translateX(-110%);visibility:hidden;
+   transition:transform .19s ease,visibility .19s;overflow:hidden;padding-top:calc(20px + env(safe-area-inset-top));
+   box-shadow:6px 0 25px #000a}
+ body.masa-drawer-open .sidebar{transform:translateX(0);visibility:visible}
+ .masa-mobile-shade{display:block;position:fixed;inset:0;background:#0009;z-index:1010;
+   opacity:0;visibility:hidden;transition:opacity .19s,visibility .19s}
+ body.masa-drawer-open .masa-mobile-shade{opacity:1;visibility:visible}
+ .main{padding:14px 12px calc(40px + env(safe-area-inset-bottom));min-width:0;max-width:100vw}
+ .topbar{align-items:flex-start;flex-wrap:wrap}
+ .topbar .status{justify-content:flex-start}
+ .sidebar .nav button{min-height:44px}
+ .v1-panel,.panel,.v1-card,.masa-chat{max-width:100%;min-width:0}
+ .masa-chat .masa-chat-controls{min-width:0}
+}
+@media (prefers-reduced-motion:reduce){.sidebar,.masa-mobile-shade{transition:none!important}}

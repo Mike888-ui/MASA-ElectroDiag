@@ -1,0 +1,14 @@
+/* MASA V1.4.4 HF1: launch help for iOS Safari / Android Chrome; PC UI unchanged */
+.masa-launch-help-button{height:42px;min-width:43px;border:1px solid #376e91;border-radius:10px;color:#e7faff;background:#15415d;font-size:13px;cursor:pointer}
+.masa-launch-overlay[hidden]{display:none!important}
+.masa-launch-overlay{position:fixed;inset:0;z-index:20010;background:rgba(0,6,18,.76);display:grid;place-items:center;padding:12px;overflow-y:auto}
+.masa-launch-dialog{position:relative;width:min(100%,460px);max-height:min(91dvh,850px);overflow-y:auto;background:#0b1b2e;border:1px solid #278ac0;border-radius:18px;padding:22px;color:#e7f4ff;box-shadow:0 14px 66px #000b;line-height:1.65}
+.masa-launch-dialog h2{font-size:19px;margin:0 0 6px}.masa-launch-dialog p{font-size:13px;color:#b1d1e4;margin:8px 0}
+.masa-launch-dialog .masa-launch-small{font-size:11px;color:#8eafc5}
+.masa-launch-dialog .masa-launch-close{position:absolute;top:9px;right:10px;background:transparent;color:#daeefa;border:0;font-size:23px;cursor:pointer;padding:4px 9px}
+.masa-launch-dialog .masa-launch-steps{padding-left:22px;font-size:13px;color:#c8e9ff}
+.masa-launch-dialog .masa-launch-actions{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0 12px}
+.masa-launch-dialog .masa-launch-actions a,.masa-launch-dialog .masa-launch-actions button{border:1px solid #286a90;background:#164360;color:#effaff;padding:9px 11px;border-radius:8px;text-decoration:none;font-size:13px;cursor:pointer}
+.masa-launch-dialog .masa-launch-warning{border:1px solid #a47634;color:#ffe2b5;background:#422a1333;border-radius:9px;padding:10px;font-size:12px}
+.masa-launch-help-button:focus-visible,.masa-launch-dialog :focus-visible{outline:2px solid #8fe9ff;outline-offset:3px}
+@media (max-width:390px){.masa-launch-dialog{padding:20px 14px}.masa-mobile-bar{gap:6px}.masa-mobile-bar .masa-mobile-brand{font-size:12px}}

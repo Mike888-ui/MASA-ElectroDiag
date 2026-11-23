@@ -1,0 +1,5 @@
+[
+  {"rule_id":"CABLE-R001","kind":"24v_drop","inputs":["psu","fuse","distribution","intermediate","load","loadCurrent"],"evidence":"最大相鄰區段差；MANUAL INPUT","source_level":"C"},
+  {"rule_id":"CABLE-R002","kind":"motor_path","inputs":["mcOutput","motorTerminal"],"evidence":"MC T2 與馬達端相對電壓；MANUAL INPUT","source_level":"C"},
+  {"rule_id":"CABLE-R003","kind":"thermal","inputs":["ambient","terminal","cableSurface","loadCurrent"],"evidence":"同工況熱點相對比較；MANUAL INPUT","source_level":"C"}
+]

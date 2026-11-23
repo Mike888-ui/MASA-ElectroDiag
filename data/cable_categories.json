@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Building Wire",
+    "source_type": "GENERIC TAXONOMY",
+    "oem_spec_available": false
+  },
+  {
+    "name": "PVC Cable",
+    "source_type": "GENERIC TAXONOMY",
+    "oem_spec_available": false
+  },
+  {
+    "name": "XLPE Cable",
+    "source_type": "GENERIC TAXONOMY",
+    "oem_spec_available": false
+  },
+  {
+    "name": "CV / XLPE-PVC",
+    "source_type": "GENERIC TAXONOMY",
+    "oem_spec_available": false
+  },
+  {
+    "name": "FR-CV",
+    "source_type": "GENERIC TAXONOMY",
+    "oem_spec_available": false
+  },
+  {
+    "name": "HR-CV",
+    "source_type": "GENERIC TAXONOMY",
+    "oem_spec_available": false
+  },
+  {
+    "name": "LSZH",
+    "source_type": "GENERIC TAXONOMY",
+    "oem_spec_available": false
+  },
+  {
+    "name": "Control Cable",
+    "source_type": "GENERIC TAXONOMY",
+    "oem_spec_available": false
+  },
+  {
+    "name": "Signal Cable",
+    "source_type": "GENERIC TAXONOMY",
+    "oem_spec_available": false
+  },
+  {
+    "name": "Shielded Cable",
+    "source_type": "GENERIC TAXONOMY",
+    "oem_spec_available": false
+  },
+  {
+    "name": "Twisted Pair",
+    "source_type": "GENERIC TAXONOMY",
+    "oem_spec_available": false
+  },
+  {
+    "name": "Communication Cable",
+    "source_type": "GENERIC TAXONOMY",
+    "oem_spec_available": false
+  },
+  {
+    "name": "Optical Fiber",
+    "source_type": "GENERIC TAXONOMY",
+    "oem_spec_available": false
+  },
+  {
+    "name": "Motor Lead Cable",
+    "source_type": "GENERIC TAXONOMY",
+    "oem_spec_available": false
+  },
+  {
+    "name": "Flexible Cable",
+    "source_type": "GENERIC TAXONOMY",
+    "oem_spec_available": false
+  },
+  {
+    "name": "Armoured Cable",
+    "source_type": "GENERIC TAXONOMY",
+    "oem_spec_available": false
+  },
+  {
+    "name": "Water Resistant Cable",
+    "source_type": "GENERIC TAXONOMY",
+    "oem_spec_available": false
+  },
+  {
+    "name": "Solar Cable",
+    "source_type": "GENERIC TAXONOMY",
+    "oem_spec_available": false
+  }
+]

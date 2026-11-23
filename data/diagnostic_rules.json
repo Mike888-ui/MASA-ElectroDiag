@@ -1,0 +1,92 @@
+[
+  {
+    "id": "R-MOTOR-PHASE",
+    "kind": "motor_phase",
+    "inputs": [
+      "voltageRS",
+      "voltageST",
+      "voltageTR",
+      "currentR",
+      "currentS",
+      "currentT"
+    ]
+  },
+  {
+    "id": "R-MC",
+    "kind": "contactor",
+    "inputs": [
+      "ratedCoil",
+      "coilVoltage",
+      "command",
+      "mechanicalClosed",
+      "inputL2",
+      "outputT2"
+    ]
+  },
+  {
+    "id": "R-PSU",
+    "kind": "psu",
+    "inputs": [
+      "ratedVoltage",
+      "noLoadVoltage",
+      "loadVoltage"
+    ]
+  },
+  {
+    "id": "R-DI",
+    "kind": "plc_di",
+    "inputs": [
+      "sensorPower",
+      "sensorOutput",
+      "plcInput"
+    ]
+  },
+  {
+    "id": "R-DO",
+    "kind": "plc_do",
+    "inputs": [
+      "led",
+      "commonPower",
+      "loadVoltage"
+    ]
+  },
+  {
+    "id": "R-VFD",
+    "kind": "vfd_oc",
+    "inputs": [
+      "stage",
+      "alarm",
+      "motorCurrentHigh"
+    ]
+  },
+  {
+    "id": "R-SERVO",
+    "kind": "servo_ready",
+    "inputs": [
+      "acPower",
+      "dcBusReady",
+      "stoHealthy",
+      "alarm"
+    ]
+  },
+  {
+    "id": "R-PCB",
+    "kind": "pcb_rail",
+    "inputs": [
+      "inputReady",
+      "rail12",
+      "rail5",
+      "rail3v3",
+      "expected3v3"
+    ]
+  },
+  {
+    "id": "R-MOS",
+    "kind": "mosfet",
+    "inputs": [
+      "powerOff",
+      "drainSourceShort",
+      "gateLeakage"
+    ]
+  }
+]

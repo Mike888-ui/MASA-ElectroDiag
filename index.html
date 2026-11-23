@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#081526" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="MASA 查修" />
+<link rel="manifest" href="./manifest.webmanifest" />
+<link rel="stylesheet" href="./assets/v1.css" />
+<link rel="stylesheet" href="./assets/mobile.css" />
+<link rel="stylesheet" href="./assets/ai-chat.css" />
+<link rel="stylesheet" href="./assets/mobile-shell.css" />
+<link rel="stylesheet" href="./assets/mobile-launcher.css" />
+<link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+<title>MASA ElectroDiag Field V1.4.4｜電控查修與多模型 AI 聊天</title>
+<style>
+:root{
+  --bg:#06101d;
+  --panel:#0b1727;
+  --panel2:#0e1d31;
+  --line:#17344f;
+  --cyan:#28d7ff;
+  --green:#44f0b1;
+  --yellow:#ffbf5a;
+  --red:#ff5f6d;
+  --text:#e8f4ff;
+  --muted:#86a2b8;
+  --blue:#4f8cff;
+  --shadow:0 0 28px rgba(40,215,255,.08);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 75% -10%, rgba(40,215,255,.12), transparent 28%),
+    radial-gradient(circle at -10% 100%, rgba(79,140,255,.12), transparent 25%),
+    var(--bg);
+  color:var(--text);
+  font-family:Inter,"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;
+  min-height:100vh;
+}
+button,input{font:inherit}
+.app{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  min-height:100vh;
+}
+.sidebar{
+  border-right:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(8,20,34,.98), rgba(5,13,23,.98));
+  padding:20px 16px;
+  position:sticky; top:0; height:100vh;
+  display:flex; flex-direction:column; overflow:hidden;
+}
+.sidebar .nav{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding-right:4px;padding-bottom:12px;scrollbar-gutter:stable}
+.sidebar .nav::-webkit-scrollbar{width:8px}
+.sidebar .nav::-webkit-scrollbar-thumb{background:rgba(40,215,255,.22);border-radius:8px}
+.sidebar .nav::-webkit-scrollbar-track{background:transparent}
+.knowledge-nav-label{margin:12px 6px 2px;color:#62dfff;font-size:11px;font-weight:800;letter-spacing:.08em;border-top:1px solid var(--line);padding-top:12px}
+.brand{
+  display:flex; align-items:center; gap:12px;
+  padding:4px 6px 18px;
+  border-bottom:1px solid var(--line);
+}
+.logo{
+  width:42px;height:42px;border:1px solid var(--cyan);border-radius:12px;
+  display:grid;place-items:center;color:var(--cyan);font-weight:900;
+  box-shadow:0 0 20px rgba(40,215,255,.2), inset 0 0 18px rgba(40,215,255,.06);
+}
+.brand h1{font-size:14px;margin:0;letter-spacing:.8px}
+.brand p{font-size:11px;margin:4px 0 0;color:var(--muted)}
+.nav{margin-top:18px;display:grid;gap:8px}
+.nav button{
+  border:1px solid transparent;background:transparent;color:#a9c2d7;
+  padding:11px 12px;border-radius:10px;text-align:left;cursor:pointer;
+  transition:.2s;
+}
+.nav button:hover,.nav button.active{
+  color:#fff;background:rgba(40,215,255,.08);border-color:rgba(40,215,255,.28);
+}
+.badge{
+  float:right;font-size:10px;padding:2px 7px;border-radius:999px;
+  background:rgba(68,240,177,.12);color:var(--green);border:1px solid rgba(68,240,177,.28)
+}
+.side-footer{
+  position:static;flex:0 0 auto;margin-top:12px;
+  border:1px solid var(--line);border-radius:12px;padding:12px;background:#081524;
+  color:var(--muted);font-size:11px;line-height:1.6
+}
+.side-footer b{color:var(--green)}
+.main{padding:18px 22px 30px;min-width:0}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px
+}
+.title h2{margin:0;font-size:20px;letter-spacing:.4px}
+.title p{margin:5px 0 0;color:var(--muted);font-size:12px}
+.status{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.status-pill{
+  border:1px solid var(--line);border-radius:999px;padding:8px 11px;
+  font-size:11px;color:#b9d4e8;background:#091828
+}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:6px}
+.green{background:var(--green);box-shadow:0 0 12px var(--green)}
+.yellow{background:var(--yellow);box-shadow:0 0 12px var(--yellow)}
+.grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.4fr) minmax(280px,.7fr);
+  gap:16px
+}
+.panel{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(13,29,48,.9),rgba(7,18,31,.94));
+  border-radius:16px;box-shadow:var(--shadow);overflow:hidden
+}
+.panel-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 16px;border-bottom:1px solid var(--line)
+}
+.panel-head h3{margin:0;font-size:13px;letter-spacing:.8px}
+.panel-head small{color:var(--muted)}
+.searchbox{padding:16px;display:flex;gap:10px}
+.searchbox input{
+  flex:1;background:#071321;border:1px solid #1b3b58;color:#eaf6ff;
+  border-radius:11px;padding:12px 14px;outline:none
+}
+.searchbox input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(40,215,255,.08)}
+.primary{
+  background:linear-gradient(180deg,#20cbf5,#109bc5);
+  color:#00131b;border:0;border-radius:10px;padding:0 15px;font-weight:800;cursor:pointer
+}
+.quick{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:0 16px 16px
+}
+.quick button{
+  background:#091929;border:1px solid #173b59;color:#bfe3f5;border-radius:11px;padding:12px 8px;cursor:pointer
+}
+.quick button:hover{border-color:var(--cyan);color:#fff}
+.diag{
+  margin:0 16px 16px;border:1px solid rgba(255,95,109,.32);
+  border-radius:14px;background:rgba(255,95,109,.045);overflow:hidden
+}
+.diag-title{
+  padding:12px 14px;border-bottom:1px solid rgba(255,95,109,.2);display:flex;justify-content:space-between;gap:12px
+}
+.diag-title b{color:#ffdce0}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:12px}
+.kpi{
+  background:#081624;border:1px solid var(--line);border-radius:10px;padding:10px
+}
+.kpi .label{font-size:10px;color:var(--muted)}
+.kpi .value{font-size:18px;font-weight:800;margin-top:4px}
+.ok{color:var(--green)} .warn{color:var(--yellow)} .bad{color:var(--red)}
+.flow{padding:4px 12px 14px}
+.step{
+  display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:center;
+  border-top:1px dashed #17344f;padding:11px 0
+}
+.step:first-child{border-top:0}
+.num{
+  width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+  background:#0b2133;border:1px solid #1e5b7d;color:var(--cyan);font-size:11px;font-weight:800
+}
+.step .name{font-size:12px}
+.step .hint{font-size:10px;color:var(--muted);margin-top:3px}
+.chip{font-size:10px;border-radius:999px;padding:4px 8px;border:1px solid}
+.chip.ok{background:rgba(68,240,177,.08);border-color:rgba(68,240,177,.35)}
+.chip.warn{background:rgba(255,191,90,.08);border-color:rgba(255,191,90,.35)}
+.chip.bad{background:rgba(255,95,109,.08);border-color:rgba(255,95,109,.35)}
+.ai-body{padding:14px 15px}
+.ai-card{
+  border:1px solid #1b4564;background:#081827;border-radius:12px;padding:12px;margin-bottom:10px
+}
+.ai-card h4{font-size:11px;margin:0 0 8px;color:#ccefff}
+.ai-card p{font-size:11px;line-height:1.6;margin:0;color:#9db7c9}
+.ai-action{
+  display:block;width:100%;margin-top:10px;padding:10px;border-radius:10px;
+  border:1px solid rgba(40,215,255,.35);background:rgba(40,215,255,.08);color:var(--cyan);cursor:pointer
+}
+.bottom{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px
+}
+.tabs{display:flex;gap:8px;padding:12px 14px 0;flex-wrap:wrap}
+.tabs button{
+  border:1px solid #1a3b56;background:#081827;color:#97b3c7;border-radius:9px;padding:7px 10px;cursor:pointer;font-size:11px
+}
+.tabs button.active{border-color:var(--cyan);color:#fff;background:rgba(40,215,255,.08)}
+.measure{padding:14px}
+.measure-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.diagram{
+  min-height:180px;border:1px solid #173b59;border-radius:12px;background:
+  linear-gradient(rgba(40,215,255,.03) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(40,215,255,.03) 1px,transparent 1px),#07131f;
+  background-size:24px 24px;padding:14px;display:grid;place-items:center;text-align:center
+}
+.diagram .symbol{font:700 18px ui-monospace,monospace;line-height:1.8;color:#dff7ff}
+.rules{display:grid;gap:8px}
+.rule{border:1px solid var(--line);border-radius:10px;padding:10px;background:#081624;font-size:11px}
+.rule b{display:block;margin-bottom:4px}
+.events{padding:10px 14px 14px}
+.event{
+  display:grid;grid-template-columns:64px 1fr auto;gap:10px;align-items:center;
+  padding:10px 2px;border-bottom:1px dashed #17344f;font-size:11px
+}
+.event:last-child{border-bottom:0}
+.time{color:#67869d}
+.event small{color:var(--muted);display:block;margin-top:3px}
+.mobile-nav{display:none}
+@media(max-width:980px){
+  .app{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .main{padding:14px}
+  .grid,.bottom{grid-template-columns:1fr}
+  .mobile-nav{display:flex;gap:8px;overflow:auto;padding-bottom:10px}
+  .mobile-nav button{white-space:nowrap;border:1px solid var(--line);background:#081624;color:#a9c2d7;border-radius:9px;padding:8px 10px;font-size:11px}
+  .quick{grid-template-columns:repeat(2,1fr)}
+  .kpi-row{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+  .topbar{align-items:flex-start;flex-direction:column}
+  .status{justify-content:flex-start}
+  .measure-grid{grid-template-columns:1fr}
+  .event{grid-template-columns:54px 1fr}
+  .event .chip{grid-column:2}
+}
+
+/* ===== V0.3 Electrician Training Complete ===== */
+:root{--training-blue:#6ab8ff}
+.training-section{margin-top:16px}
+.train-head-actions{display:flex;gap:8px;flex-wrap:wrap}
+.train-btn{border:1px solid #1a3b56;background:#081827;color:#b9d7e9;border-radius:9px;padding:8px 10px;cursor:pointer;font-size:11px}
+.train-btn:hover,.train-btn.active{border-color:var(--cyan);color:#fff;background:rgba(40,215,255,.08)}
+.train-btn.star.active{color:#ffd66b;border-color:#ffd66b}
+.training-summary{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.training-stat{background:#081624;border:1px solid var(--line);border-radius:10px;padding:10px}
+.training-stat .label{font-size:9px;color:var(--muted)}
+.training-stat .value{font-size:19px;font-weight:800;margin-top:4px}
+.training-toolbar{display:flex;gap:10px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--line);align-items:center}
+.training-toolbar .group{display:flex;gap:7px;flex-wrap:wrap}
+.training-layout{display:grid;grid-template-columns:330px minmax(0,1fr);min-height:620px}
+.question-list{border-right:1px solid var(--line);padding:12px;max-height:820px;overflow:auto}
+.qitem{border:1px solid #17344f;border-radius:11px;padding:11px;margin-bottom:8px;background:#081624;cursor:pointer}
+.qitem:hover,.qitem.active{border-color:var(--cyan);background:rgba(40,215,255,.07)}
+.qitem-top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.qitem b{font-size:12px;line-height:1.4}.qitem small{display:block;color:var(--muted);margin-top:6px}
+.source-tag,.difficulty-tag,.state-tag{font-size:9px;padding:3px 6px;border-radius:999px;border:1px solid;white-space:nowrap}
+.source-tag{border-color:rgba(40,215,255,.3);color:var(--cyan)}
+.difficulty-tag{border-color:rgba(255,191,90,.3);color:var(--yellow)}
+.state-tag{border-color:#254961;color:#9fc1d7}
+.training-detail{padding:16px;min-width:0}
+.training-title-row{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.training-detail h3{margin:0;font-size:18px}.training-detail .sub{color:var(--muted);font-size:11px;margin:6px 0 14px}
+.detail-actions{display:flex;gap:8px;flex-wrap:wrap}
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.info-card{border:1px solid var(--line);border-radius:11px;background:#081624;padding:11px;min-width:0}
+.info-card h4{margin:0 0 7px;font-size:11px;color:#ccefff}
+.info-card p,.info-card li{font-size:11px;line-height:1.65;color:#9db7c9;margin-top:0}
+.info-card ul{margin:0;padding-left:17px}.wide{grid-column:1/-1}
+.sequence{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;color:#dff7ff;font-size:12px;line-height:1.65}
+.safety-box{border-color:rgba(255,191,90,.35);background:rgba(255,191,90,.05)}
+.diagram-shell{border:1px solid #173b59;border-radius:12px;background:#06131f;padding:10px;overflow:auto}
+.diagram-shell svg{width:100%;min-width:620px;height:auto;display:block}
+.diagram-note{font-size:10px;color:var(--muted);margin-top:8px;line-height:1.5}
+.terminal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:8px}
+.terminal{border:1px solid #1a405c;background:#07131f;border-radius:9px;padding:9px;text-align:center}
+.terminal b{display:block;color:var(--cyan);font-size:11px}.terminal span{font-size:9px;color:var(--muted)}
+.exam-panel{display:none;margin-top:16px;border:1px solid var(--line);border-radius:14px;background:#07131f;overflow:hidden}
+.exam-panel.active{display:block}
+.exam-setup,.exam-live,.records-panel{padding:14px}
+.exam-config{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.exam-config label{font-size:10px;color:var(--muted);display:block;margin-bottom:5px}
+.exam-config select{width:100%;background:#06121e;color:var(--text);border:1px solid #1b405c;border-radius:9px;padding:9px}
+.exam-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.timer{font-family:ui-monospace,monospace;font-size:22px;font-weight:900;color:var(--yellow)}
+.exam-progress{font-size:11px;color:var(--muted)}
+.exam-question{font-size:15px;font-weight:700;line-height:1.6;margin:14px 0}
+.answer-options{display:grid;gap:8px}
+.answer-options button{background:#081827;border:1px solid #1a3b56;color:#c3dced;border-radius:9px;padding:11px;text-align:left;cursor:pointer}
+.answer-options button:hover{border-color:var(--cyan)}
+.answer-options button.selected{border-color:var(--cyan);background:rgba(40,215,255,.09)}
+.exam-feedback{margin-top:10px;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:11px;line-height:1.55;display:none}
+.exam-feedback.show{display:block}
+.exam-nav{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:12px}
+.record-row{display:grid;grid-template-columns:90px 1fr 70px 70px;gap:8px;padding:9px;border-bottom:1px dashed #17344f;font-size:10px}
+.record-row:last-child{border-bottom:0}
+.badge-mini{font-size:9px;border:1px solid #24445b;border-radius:999px;padding:3px 6px}
+.notice{padding:10px;border-radius:9px;background:rgba(40,215,255,.05);border:1px solid rgba(40,215,255,.2);font-size:10px;color:#a9c5d7;line-height:1.55}
+.fault-prompt{border:1px solid rgba(255,95,109,.35);background:rgba(255,95,109,.05);border-radius:10px;padding:11px}
+.fault-prompt b{color:#ff9aa5}
+@media(max-width:980px){
+ .training-layout{grid-template-columns:1fr}
+ .question-list{border-right:0;border-bottom:1px solid var(--line);max-height:360px}
+ .training-summary{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:680px){
+ .training-summary{grid-template-columns:repeat(2,1fr)}
+ .info-grid,.exam-config{grid-template-columns:1fr}
+ .wide{grid-column:auto}
+ .record-row{grid-template-columns:1fr 60px 60px}
+ .record-row .date{display:none}
+ .diagram-shell svg{min-width:540px}
+}
+
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">M</div>
+      <div><h1>MASA ElectroDiag</h1><p>Field V1.4.4 · WEB / OFFLINE</p></div>
+    </div>
+    <div class="nav">
+      <button class="active">◈ Dashboard <span class="badge">LOCAL</span></button>
+      <button>⌕ 智慧異常搜尋</button>
+      <button>⚡ 電控元件</button>
+      <button>⌁ 電子元件</button>
+      <button>⌁ 感測 / 訊號</button>
+      <button>▦ 量測中心</button>
+      <button>⎇ 故障樹</button>
+      <button>✦ AI 診斷助手</button>
+      <button>▣ 維修案例</button>
+      <button>☰ 設備履歷</button>
+      <button onclick="document.getElementById('trainingCenter').scrollIntoView({behavior:'smooth'})">📘 電匠實作訓練</button>
+    </div>
+    <div class="side-footer">
+      <b>● OFFLINE-FIRST</b><br>
+      <span id="storageStatus">正在檢查本機資料庫…</span><br>
+      Rule Engine：Local<br>
+      Safety Mode：Enabled
+    </div>
+  </aside>
+
+  <main class="main">
+    <details class="mobile-menu">
+      <summary>☰ 功能選單</summary>
+      <nav class="mobile-nav" aria-label="手機功能選單">
+        <button>Dashboard</button><button>智慧異常搜尋</button><button>電控元件</button>
+        <button>電子元件</button><button>感測 / 訊號</button><button>量測中心</button>
+        <button>故障樹</button><button>AI 診斷助手</button><button>設備履歷</button>
+        <button>維修案例</button><button>電路模擬</button><button>資料管理</button><button>統計月報</button><button>電匠實作</button>
+      </nav>
+    </details>
+
+    <section class="field-install-box" aria-label="手機離線安裝">
+      <div class="field-install-top">
+        <span id="fieldOfflineStatus" role="status">正在確認離線狀態…</span>
+        <button id="fieldOfflineRetry" type="button" hidden>重試</button>
+        <button id="fieldInstall" type="button" hidden>安裝到手機</button>
+        <button id="fieldAgentQuick" type="button" aria-controls="masaAgentWorkspace">✦ 開啟 AI 查修 Agent</button>
+      </div>
+      <details id="fieldInstallHelp">
+        <summary>手機安裝與離線使用</summary>
+        <p>iPhone 用 Safari 開啟此 HTTPS 網址，在分享選單選「加入主畫面」。如有「以網頁 App 開啟」選項，請保持開啟。Android 用 Chrome，在選單選「安裝應用程式」或「加到主畫面」。</p>
+        <p>PWA 網頁版首次使用必須連網載入整套程式及本機知識包；單檔離線版及 Android App 專案已內建整套檔案，無須首次下載；待顯示「AI Agent 離線已就緒」後才能進行飛航模式驗收。離線就緒指本機規則與知識檢索。多家 AI 聊天室可選官方網站登入、需個人 API Key 的雲端服務、Ollama 及支援裝置的 Chrome 內建 AI；只有本機規則與知識庫能保證在已快取時離線使用。正式帳號登入在各家官方頁面完成，MASA 不接收帳密；API Key 可選擇在此裝置用密語加密保存，但使用前仍須手動解鎖。不能操作 PLC。現場紀錄存於此裝置的瀏覽器／網頁 App，資料有被清除或儲存空間回收的風險，請定期手動匯出 ZIP。</p>
+      </details>
+      <p id="fieldUpdate" hidden>有新版已下載。儲存紀錄後，關閉所有已開啟的本工具頁面與主畫面 App，再重新開啟。</p>
+    </section>
+
+    <div class="topbar">
+      <div class="title">
+        <h2>設備電控 / 電子異常診斷中心</h2>
+        <p>Electrical & Electronic Troubleshooting Intelligence System</p>
+      </div>
+      <div class="status">
+        <div class="status-pill"><span class="dot yellow"></span>MANUAL INPUT / SIMULATION</div>
+        <div class="status-pill"><span class="dot yellow"></span>SAFETY CHECK ON</div>
+      </div>
+    </div>
+
+    <section class="grid">
+      <div class="panel">
+        <div class="panel-head">
+          <h3>SMART TROUBLESHOOTING</h3>
+          <small>SIMULATION 示例｜症狀 → 人工量測 → 判定</small>
+        </div>
+
+        <div class="searchbox">
+          <input id="searchInput" value="MC 電磁接觸器不吸合" aria-label="故障搜尋">
+          <button class="primary" onclick="runDiagnosis()">開始診斷</button>
+        </div>
+
+        <div class="quick">
+          <button onclick="quick('24V 電源掉壓')">24V 掉壓</button>
+          <button onclick="quick('PLC Output 有燈無輸出')">PLC I/O</button>
+          <button onclick="quick('Sensor 無訊號')">Sensor</button>
+          <button onclick="quick('變頻器有 Alarm')">Inverter</button>
+        </div>
+
+        <div class="diag">
+          <div class="diag-title">
+            <b id="faultTitle">⚠ FAULT：MC 電磁接觸器不吸合</b>
+            <span class="chip bad">SIMULATION</span>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi"><div class="label">CONTROL POWER</div><div class="value ok">24.1V</div></div>
+            <div class="kpi"><div class="label">PLC OUTPUT</div><div class="value ok">ON</div></div>
+            <div class="kpi"><div class="label">COIL VOLTAGE</div><div class="value bad">0.3V</div></div>
+            <div class="kpi"><div class="label">示例 CONFIDENCE</div><div class="value warn">82%</div></div>
+          </div>
+          <div class="flow">
+            <div class="step"><div class="num">01</div><div><div class="name">確認控制電源</div><div class="hint">量測依銘牌 DC 輸出及 0V</div></div><span class="chip ok">示例</span></div>
+            <div class="step"><div class="num">02</div><div><div class="name">確認 PLC Output</div><div class="hint">LED ON；再依型號量 Output-COM</div></div><span class="chip ok">示例</span></div>
+            <div class="step"><div class="num">03</div><div><div class="name">確認 Relay 接點</div><div class="hint">檢查 COM → NO 是否有 24V 通過</div></div><span class="chip bad">CHECK</span></div>
+            <div class="step"><div class="num">04</div><div><div class="name">確認 MC Coil A1 / A2</div><div class="hint">核對線圈銘牌；量測 A1-A2</div></div><span class="chip warn">NEXT</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h3>DIAGNOSTIC EXAMPLE</h3>
+          <small>SIMULATION；非雲端 AI 或現場實測</small>
+        </div>
+        <div class="ai-body">
+          <div class="ai-card">
+            <h4>最高可能原因</h4>
+            <p><b style="color:#ff8b96">Relay 接點異常 / 斷線</b><br>PLC Output 已 ON，但 MC Coil 端未得到額定電壓，優先檢查中間 Relay、端子與線路。</p>
+          </div>
+          <div class="ai-card">
+            <h4>下一個量測點</h4>
+            <p>僅作 24VDC 教學示例：核對原廠端子與額定，再依安全程序比較 Relay COM 與 NO，不以此固定示例判定所有機型。</p>
+          </div>
+          <div class="ai-card">
+            <h4>安全提醒</h4>
+            <p>帶電量測需依設備 SOP、CAT 等級與 PPE 執行。電阻 / 導通 / 二極體模式前，必須先完成斷電與驗電。</p>
+          </div>
+          <button class="ai-action" onclick="nextStep()">▶ 顯示下一步檢查程序</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottom">
+      <div class="panel">
+        <div class="panel-head"><h3>MEASUREMENT CENTER</h3><small>互動式量測指引</small></div>
+        <div class="tabs">
+          <button class="active" onclick="selectTab(this,'relay')">Relay</button>
+          <button onclick="selectTab(this,'diode')">Diode</button>
+          <button onclick="selectTab(this,'sensor')">Sensor</button>
+          <button onclick="selectTab(this,'psu')">24V PSU</button>
+        </div>
+        <div class="measure">
+          <div class="measure-grid">
+            <div class="diagram" id="diagram">
+              <div class="symbol">+24V ── COM<br>　　　　╲<br>　　　　 NO ── A1 [ MC COIL ] A2 ── 0V<br><br><span style="color:#28d7ff">量測：COM → NO → A1 → A2</span></div>
+            </div>
+            <div class="rules" id="rules">
+              <div class="rule"><b class="ok">示例正常</b>COM/NO/A1-A2 與線圈銘牌、圖面相符</div>
+              <div class="rule"><b class="bad">接點異常</b>COM 正常而 NO 未傳遞；先核對命令狀態</div>
+              <div class="rule"><b class="warn">線路異常</b>NO 有輸出而 A1 缺失；查端子線路</div>
+              <div class="rule"><b class="bad">Coil／機構</b>A1-A2 與額定相符但未吸合</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h3>EVENT / REPAIR EXAMPLES</h3><small>以下均為 SIMULATION，真實紀錄請見維修案例</small></div>
+        <div class="events">
+          <div class="event"><div class="time">15:42</div><div>MC-03 Contactor<small>Coil 無電壓 → Relay 路徑檢查</small></div><span class="chip bad">OPEN</span></div>
+          <div class="event"><div class="time">14:18</div><div>PSU-01 24V Power<small>SIMULATION：輸出 19.6V，示例中需再確認負載／銘牌</small></div><span class="chip warn">WATCH</span></div>
+          <div class="event"><div class="time">11:05</div><div>PE Sensor S12<small>NPN Output 正常，端子鬆脫</small></div><span class="chip ok">CLOSED</span></div>
+          <div class="event"><div class="time">09:31</div><div>INV-07 Inverter<small>Overcurrent Alarm，機構卡滯</small></div><span class="chip ok">CLOSED</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel v1-panel" id="v1Workspace" aria-live="polite"></section>
+    <section class="panel v1-panel" id="engineeringWorkspace" aria-live="polite" hidden></section>
+    <section class="panel v1-panel" id="fieldWorkspace" aria-live="polite" hidden></section>
+    <section class="panel training-section" id="trainingCenter">
+      <div class="panel-head">
+        <div>
+          <h3>📘 電匠實作訓練中心 / ELECTRICIAN PRACTICAL TRAINING</h3>
+          <small>保留原版 30 題 + 90 題 MASA 教學題 · 電路教學圖 · 隨機計時考試</small>
+        </div>
+        <div class="train-head-actions">
+          <button class="train-btn" onclick="showRecords()">答題紀錄</button>
+          <button class="train-btn" onclick="showWrongOnly()">錯題複習</button>
+          <button class="train-btn" onclick="resetTrainingData()">清除學習紀錄</button>
+        </div>
+      </div>
+      <div class="training-summary">
+        <div class="training-stat"><div class="label">題庫總數</div><div class="value cyan" id="statTotal">30</div></div>
+        <div class="training-stat"><div class="label">累計作答</div><div class="value ok" id="statDone">0</div></div>
+        <div class="training-stat"><div class="label">答對率</div><div class="value warn" id="statRate">0%</div></div>
+        <div class="training-stat"><div class="label">錯題收藏</div><div class="value bad" id="statWrong">0</div></div>
+        <div class="training-stat"><div class="label">收藏題目</div><div class="value cyan" id="statFav">0</div></div>
+      </div>
+      <div class="training-toolbar">
+        <div class="group" id="modeTabs">
+          <button class="train-btn active" onclick="setTrainingMode(this,'learn')">學習模式</button>
+          <button class="train-btn" onclick="setTrainingMode(this,'fault')">故障查修</button>
+          <button class="train-btn" onclick="setTrainingMode(this,'exam')">模擬考試</button>
+        </div>
+        <div class="group" id="categoryTabs">
+          <button class="train-btn active" onclick="filterQuestions(this,'全部')">全部</button>
+          <button class="train-btn" onclick="filterQuestions(this,'控制電路')">控制電路</button>
+          <button class="train-btn" onclick="filterQuestions(this,'馬達控制')">馬達控制</button>
+          <button class="train-btn" onclick="filterQuestions(this,'接觸器')">接觸器</button>
+          <button class="train-btn" onclick="filterQuestions(this,'配電')">配電</button>
+          <button class="train-btn" onclick="filterQuestions(this,'儀表量測')">儀表量測</button>
+          <button class="train-btn" onclick="filterQuestions(this,'故障查修')">故障查修</button>
+        </div>
+      </div>
+      <div class="training-layout">
+        <div class="question-list" id="questionList"></div>
+        <div class="training-detail" id="trainingDetail"></div>
+      </div>
+      <div class="exam-panel" id="examPanel">
+        <div class="exam-setup" id="examSetup">
+          <h3 style="margin:0 0 10px">隨機計時模擬考試</h3>
+          <div class="exam-config">
+            <div><label>抽題數量</label><select id="examCount"><option>5</option><option selected>10</option><option>20</option><option>30</option></select></div>
+            <div><label>考試時間</label><select id="examMinutes"><option>5</option><option selected>10</option><option>20</option><option>30</option></select></div>
+            <div><label>題目範圍</label><select id="examCategory"><option>全部</option><option>控制電路</option><option>馬達控制</option><option>接觸器</option><option>配電</option><option>儀表量測</option><option>故障查修</option></select></div>
+          </div>
+          <div class="notice" style="margin-top:10px">題目會隨機抽取並打亂選項；時間到自動交卷。作答紀錄、錯題與收藏會保存於瀏覽器 localStorage；若瀏覽器禁止 localStorage，系統會自動退回本次工作階段記憶。</div>
+          <button class="primary" style="margin-top:12px;padding:10px 16px" onclick="startTimedExam()">開始模擬考試</button>
+        </div>
+        <div class="exam-live" id="examLive" style="display:none">
+          <div class="exam-top"><div class="exam-progress" id="examProgress"></div><div class="timer" id="examTimer">10:00</div></div>
+          <div class="exam-question" id="examQuestion"></div>
+          <div class="answer-options" id="examOptions"></div>
+          <div class="exam-feedback" id="examFeedback"></div>
+          <div class="exam-nav">
+            <button class="train-btn" onclick="prevExamQuestion()">← 上一題</button>
+            <div style="display:flex;gap:8px"><button class="train-btn star" id="examFavBtn" onclick="toggleExamFavorite()">☆ 收藏</button><button class="train-btn" onclick="nextExamQuestion()">下一題 →</button><button class="primary" style="padding:8px 14px" onclick="submitTimedExam(false)">交卷</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="exam-panel" id="recordsPanel">
+        <div class="records-panel"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><h3 style="margin:0">答題紀錄</h3><button class="train-btn" onclick="document.getElementById('recordsPanel').classList.remove('active')">關閉</button></div><div id="recordsBody" style="margin-top:10px"></div></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+const dataset={
+ relay:{
+  diagram:'+24V ── COM<br>　　　　╲<br>　　　　 NO ── A1 [ MC COIL ] A2 ── 0V<br><br><span style="color:#28d7ff">量測：COM → NO → A1 → A2</span>',
+  rules:[
+   ['正常','ok','COM/NO/A1-A2 依實際銘牌與圖面比對'],
+   ['Relay 接點異常','bad','命令成立、COM 有電而 NO 無輸出'],
+   ['線路 / 端子異常','warn','NO 有輸出而 A1 缺失'],
+   ['MC Coil 異常','bad','A1-A2 接近線圈銘牌額定但未吸合']
+  ]},
+ diode:{
+  diagram:'RED (+) ──|>|── BLACK (-)<br><br>正反向結果依型號 Datasheet；測試前斷電放電',
+  rules:[
+   ['正常','ok','正向／反向依型號 Datasheet 比對'],
+   ['短路','bad','正反向皆接近 0V'],
+   ['開路','bad','正反向皆 OL'],
+   ['注意','warn','在板量測可能受並聯元件影響']
+  ]},
+ sensor:{
+  diagram:'BROWN ── +24V<br>BLUE ─── 0V<br>BLACK ── OUT<br><br><span style="color:#28d7ff">NPN / PNP 先確認型式</span>',
+  rules:[
+   ['供電正常','ok','供電端與該 Sensor 銘牌電壓相符'],
+   ['輸出檢查','warn','動作前後量測 Black 對 0V / +24V'],
+   ['無供電','bad','優先查 Fuse、端子、Cable'],
+   ['訊號異常','bad','Sensor LED 動作但 PLC Input 不變']
+  ]},
+ psu:{
+  diagram:'AC INPUT ── [ SMPS ] ── +24V / 0V<br><br><span style="color:#28d7ff">先空載，再帶載比較</span>',
+  rules:[
+   ['正常','ok','帶載輸出依該 PSU 銘牌及原廠允差判斷'],
+   ['掉壓','warn','帶載後明顯下降：負載或 PSU 劣化'],
+   ['Ripple','warn','若異常重啟，可進一步量測紋波'],
+   ['無輸出','bad','確認 AC Input、Fuse、保護狀態']
+  ]}
+};
+
+function selectTab(btn,key){
+ document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));
+ btn.classList.add('active');
+ document.getElementById('diagram').innerHTML='<div class="symbol">'+dataset[key].diagram+'</div>';
+ document.getElementById('rules').innerHTML=dataset[key].rules.map(r=>`<div class="rule"><b class="${r[1]}">${r[0]}</b>${r[2]}</div>`).join('');
+}
+function quick(v){
+ document.getElementById('searchInput').value=v;
+ runDiagnosis();
+}
+function runDiagnosis(){
+ const v=document.getElementById('searchInput').value.trim()||'未輸入症狀';
+ document.getElementById('faultTitle').textContent='⚠ FAULT：'+v;
+}
+function nextStep(){
+ alert('下一步：量測 Relay COM → NO。若 COM=24V、NO=0V，請檢查 Relay Coil 驅動、接點燒蝕與端子鬆脫。');
+}
+
+const trainingQuestions = [{"id": 1, "title": "三相馬達直接啟動 DOL", "category": "馬達控制", "difficulty": "基礎", "diagram": "dol", "components": "MCCB、Fuse、MC、OL、Start PB、Stop PB、三相馬達", "function": "以電磁接觸器直接將三相電源送至馬達，適合允許直接啟動電流的場合。", "principle": "Start 使 MC Coil 得電，主接點閉合；MC 輔助 NO 建立自保持；OL NC 串在控制回路中，過載時切斷 Coil。", "sequence": "START → MC Coil ON → 主接點閉合 → Motor RUN\nSTOP / OL Trip → MC Coil OFF → Motor STOP", "measure": "先確認控制電源與 Coil 銘牌；再確認 A1-A2、L1/L2/L3 與 T1/T2/T3。", "mistakes": "Stop PB 誤用 NO、OL NC 未串入、Coil 電壓規格不符。", "safety": "接線與導通測試先斷電、驗電；三相帶電量測僅限合格受訓人員。", "terminals": ["L1", "L2", "L3", "T1", "T2", "T3", "A1", "A2", "13", "14", "95", "96"], "quiz": {"q": "按下 START 後 MC 完全不吸合，第一個合理確認步驟是？", "a": ["直接換馬達", "確認控制電源與 MC Coil 額定/實測電壓", "更換 OL", "交換兩相"], "c": 1, "e": "MC 未吸合時應先確認控制鏈與 A1-A2，而不是先判定馬達故障。"}}, {"id": 2, "title": "自保持控制 Self-Hold", "category": "控制電路", "difficulty": "基礎", "diagram": "selfhold", "components": "Start NO、Stop NC、MC Coil、MC Auxiliary NO", "function": "讓瞬時 Start 按鈕放開後，MC 仍維持吸合。", "principle": "MC 吸合後 Auxiliary NO 13-14 閉合，形成繞過 Start PB 的保持路徑。", "sequence": "START → MC ON → AUX 13-14 CLOSE → 放開 START → MC 保持\nSTOP → 控制回路開路 → MC OFF", "measure": "斷電量 Aux NO；通電時可確認 A1-A2 與保持支路電位。", "mistakes": "Aux NO 接錯成 NC、保持接點接錯位置、Stop NC 接錯。", "safety": "任何改線先斷電、驗電；不得永久旁路 Stop。", "terminals": ["STOP 11", "STOP 12", "START 13", "START 14", "MC 13", "MC 14", "A1", "A2"], "quiz": {"q": "Start 按著時 MC 吸合，放開後立即掉開，最可能先檢查？", "a": ["MC 主接點", "MC Auxiliary NO 自保持支路", "馬達軸承", "三相相序"], "c": 1, "e": "按住 Start 時能吸合，表示基本 Coil 路徑成立；放開即掉開，優先查自保持支路。"}}, {"id": 3, "title": "Jog 寸動控制", "category": "控制電路", "difficulty": "基礎", "diagram": "jog", "components": "Jog PB、MC、Motor", "function": "按住才運轉，放開立即停止，用於對位與調機。", "principle": "Jog 回路不建立自保持，按鈕放開即切斷 Coil。", "sequence": "按住 JOG → MC ON → Motor RUN\n放開 JOG → MC OFF → Motor STOP", "measure": "確認 Jog PB 動作與 A1-A2 電壓同步。", "mistakes": "誤接自保持支路，造成放開後仍運轉。", "safety": "寸動可能造成機構突然移動，危險區必須淨空。", "terminals": ["JOG 13", "JOG 14", "A1", "A2"], "quiz": {"q": "Jog 控制的關鍵特性是？", "a": ["必須自保持", "按住運轉、放開停止", "只能用 PLC", "必須星三角"], "c": 1, "e": "Jog 的核心就是不建立保持回路。"}}, {"id": 4, "title": "正逆轉控制 Forward / Reverse", "category": "馬達控制", "difficulty": "中階", "diagram": "reverse", "components": "MC-F、MC-R、Electrical Interlock、Mechanical Interlock、Motor", "function": "交換任兩相改變三相馬達旋轉方向。", "principle": "正轉與反轉接觸器的主回路交換兩相；兩接觸器必須具備電氣與機械互鎖。", "sequence": "FWD → MC-F ON → 正轉\nSTOP → MC-F OFF\nREV → MC-R ON → 交換兩相 → 反轉", "measure": "確認 MC-F / MC-R Coil、NC Interlock 與主接點輸出。", "mistakes": "未做互鎖、兩個 MC 同時吸合、相序接錯。", "safety": "嚴禁正反轉接觸器同時閉合，否則可能造成相間短路。", "terminals": ["MC-F A1", "MC-F A2", "MC-R A1", "MC-R A2", "F-NC 21", "F-NC 22", "R-NC 21", "R-NC 22"], "quiz": {"q": "正逆轉回路為何要做硬體互鎖？", "a": ["讓馬達轉更快", "避免正逆接觸器同時吸合造成短路", "降低 24V 電壓", "增加 PLC 點數"], "c": 1, "e": "互鎖是防止正逆接觸器同時閉合的核心安全措施。"}}, {"id": 5, "title": "正逆轉電氣互鎖", "category": "接觸器", "difficulty": "中階", "diagram": "interlock", "components": "MC-F NC、MC-R NC、MC-F Coil、MC-R Coil", "function": "防止 Forward / Reverse 同時得電。", "principle": "MC-F Coil 串入 MC-R NC；MC-R Coil 串入 MC-F NC。", "sequence": "MC-F ON → MC-F NC OPEN → 阻斷 MC-R\nMC-R ON → MC-R NC OPEN → 阻斷 MC-F", "measure": "斷電量測互鎖 NC；動作後確認對向 Coil 路徑確實斷開。", "mistakes": "互鎖接點使用 NO、接點編號誤判。", "safety": "安全關鍵場合不可只依賴 PLC 軟體互鎖。", "terminals": ["F 21", "F 22", "R 21", "R 22", "F A1", "R A1", "A2"], "quiz": {"q": "MC-F 線圈回路應串入哪個接點作電氣互鎖？", "a": ["MC-F NO", "MC-R NC", "MC-R NO", "OL NO"], "c": 1, "e": "正轉線圈串入反轉接觸器的 NC，反之亦然。"}}, {"id": 6, "title": "星三角啟動 Star-Delta", "category": "馬達控制", "difficulty": "進階", "diagram": "stardelta", "components": "KM1 Main、KM2 Star、KM3 Delta、Timer、OL、6 線馬達", "function": "降低三相感應馬達直接啟動時的啟動電流。", "principle": "先以 Star 接法啟動，再切離 Star，經適當死區後切入 Delta 運轉。", "sequence": "START → KM1 + KM2 → STAR\nTimer 到時 → KM2 OFF → Dead Time → KM3 ON → DELTA", "measure": "檢查 Timer Output、KM2/KM3 Interlock、Coil 電壓與主接點。", "mistakes": "Star/Delta 同時吸合、Timer 接點誤用、六線端子接錯。", "safety": "Star 與 Delta Contactor 嚴禁同時閉合。", "terminals": ["U1", "V1", "W1", "U2", "V2", "W2", "KM1", "KM2", "KM3", "T"], "quiz": {"q": "星三角切換最重要的安全條件是？", "a": ["KM1 必須關閉", "KM2 與 KM3 不可同時吸合", "OL 必須短接", "Timer 必須設 0 秒"], "c": 1, "e": "Star 與 Delta 同時吸合可能造成嚴重短路。"}}, {"id": 7, "title": "Timer 延時啟動", "category": "控制電路", "difficulty": "中階", "diagram": "timer", "components": "Timer Relay、MC、PB", "function": "依設定時間延遲啟動下一負載。", "principle": "Timer Coil 得電後計時，延時接點改變狀態驅動下一段。", "sequence": "START → Timer ON → 計時 → T-NO CLOSE → MC ON", "measure": "量 Timer Coil、設定值與延時 NO/NC 切換。", "mistakes": "On-delay / Off-delay 型式選錯、接點編號錯。", "safety": "調整時間前先確認負載啟動順序不會造成危險。", "terminals": ["Timer A1", "Timer A2", "15", "16", "18", "MC A1", "MC A2"], "quiz": {"q": "On-delay Timer 的典型行為是？", "a": ["失電後延遲關閉", "得電後計時再切換接點", "永遠保持輸出", "只測電流"], "c": 1, "e": "On-delay 是得電後開始計時，到時後接點切換。"}}, {"id": 8, "title": "兩台馬達順序啟動", "category": "馬達控制", "difficulty": "中階", "diagram": "sequence", "components": "MC1、MC2、Timer / Relay", "function": "確保第一台馬達運轉後，第二台才允許啟動。", "principle": "以 MC1 Auxiliary 或 Timer 作為 M2 的允許條件。", "sequence": "START → M1 RUN → Permissive → M2 RUN", "measure": "檢查 MC1 Aux、Timer Output 與 MC2 Coil。", "mistakes": "順序條件接反、停止順序不合理。", "safety": "輸送設備需考量停止順序，避免堆料或機構碰撞。", "terminals": ["MC1 13", "MC1 14", "MC2 A1", "MC2 A2"], "quiz": {"q": "M2 要在 M1 啟動後才運轉，最常用的硬體允許條件是？", "a": ["M1 Aux NO", "M2 Aux NC", "OL NO", "Fuse"], "c": 0, "e": "可用 M1 輔助 NO 作為 M2 的 permissive。"}}, {"id": 9, "title": "兩台馬達交替控制", "category": "馬達控制", "difficulty": "進階", "diagram": "alternate", "components": "Alternating Relay / PLC、MC1、MC2", "function": "兩台泵浦或風機輪流運轉，平均使用時數。", "principle": "每次啟動切換主機；必要時故障自動切換備機。", "sequence": "Cycle 1 → M1\nCycle 2 → M2\nM1 Fault → M2 Backup", "measure": "確認交替 Relay / PLC 輸出與兩個 MC Coil。", "mistakes": "未設互鎖、故障切換條件不完整。", "safety": "備援切換需評估兩台同時啟動造成的電源負載。", "terminals": ["ALT COM", "ALT NO1", "ALT NO2", "MC1 A1", "MC2 A1", "A2"], "quiz": {"q": "交替控制主要目的之一是？", "a": ["提高線電壓", "平均設備使用時數", "取消過載保護", "取代所有感測器"], "c": 1, "e": "交替控制常用來平衡兩台泵浦/風機的使用時數。"}}, {"id": 10, "title": "熱過載繼電器 OL 保護", "category": "配電", "difficulty": "基礎", "diagram": "overload", "components": "Thermal Overload Relay、MC、Motor", "function": "馬達持續過載時切斷控制回路，降低繞組過熱風險。", "principle": "OL 動作後 95-96 NC 打開，使 MC Coil 失電。", "sequence": "Overload → OL Trip → 95-96 OPEN → MC OFF", "measure": "斷電量 95-96；核對 OL 設定與馬達銘牌電流。", "mistakes": "設定過大、重置後未查根因。", "safety": "OL 跳脫後不可只重置，應先排除機械卡滯、缺相或過載。", "terminals": ["L1", "L2", "L3", "T1", "T2", "T3", "95", "96", "97", "98"], "quiz": {"q": "OL 常用哪組接點串在 MC Coil 控制回路？", "a": ["95-96 NC", "97-98 NO", "L1-T1", "A1-A2"], "c": 0, "e": "95-96 通常為常閉保護接點，跳脫時開路。"}}, {"id": 11, "title": "三相馬達缺相判斷", "category": "故障查修", "difficulty": "中階", "diagram": "phaseloss", "components": "MCCB、Fuse、MC、OL、3Φ Motor", "function": "判斷缺相造成無法啟動、過熱或電流不平衡。", "principle": "三相任一相中斷會造成轉矩下降、剩餘相電流升高。", "sequence": "症狀 → 量 R-S / S-T / T-R → 比較三相電流 → 查 Fuse / MC / 端子 / 繞組", "measure": "量三組線電壓與三相電流，比較是否明顯不平衡。", "mistakes": "只看接觸器有吸合就判定三相正常。", "safety": "三相帶電量測風險高，只能由受訓人員使用合適 CAT 儀表。", "terminals": ["R", "S", "T", "U", "V", "W"], "quiz": {"q": "判斷缺相時，哪個方法較完整？", "a": ["只量 R-S", "比較 R-S、S-T、T-R 並觀察三相電流", "只看 MC 聲音", "只看馬達外觀"], "c": 1, "e": "需要比較三組線電壓與三相電流，才能有效縮小缺相位置。"}}, {"id": 12, "title": "Brake Motor 煞車控制", "category": "馬達控制", "difficulty": "進階", "diagram": "brake", "components": "Motor、Brake Coil、Rectifier、MC", "function": "斷電時抱煞、運轉時釋放煞車。", "principle": "Brake Coil 得到正確電源後克服彈簧力解除制動。", "sequence": "RUN CMD → Motor Power + Brake Release\nSTOP → Brake Coil OFF → Brake Engage", "measure": "依銘牌確認 Brake Coil AC/DC 電壓、整流器輸出與 Coil。", "mistakes": "Brake Coil 電壓規格錯、整流器故障。", "safety": "垂直軸釋放煞車可能造成負載下墜，需機械支撐。", "terminals": ["Brake +", "Brake -", "Rect AC1", "Rect AC2", "M U", "M V", "M W"], "quiz": {"q": "垂直軸 Brake Motor 查修前最重要的額外安全措施？", "a": ["提高電壓", "機械支撐負載", "短接 Brake", "拆除 OL"], "c": 1, "e": "煞車釋放可能造成垂直負載下墜，必須先機械支撐。"}}, {"id": 13, "title": "Servo Enable / Ready", "category": "馬達控制", "difficulty": "進階", "diagram": "servo", "components": "Servo Drive、Servo Motor、STO、Enable、Encoder", "function": "確認伺服進入 Servo ON 並接受位置/速度命令。", "principle": "電源、STO、安全、Alarm Reset、Servo Enable 與回授條件需成立。", "sequence": "Power → STO OK → Ready → Servo ON → Command → Motion", "measure": "優先讀 Drive Status / Alarm；I/O 依原廠手冊量測。", "mistakes": "只量 U/V/W 就判斷 Servo 好壞。", "safety": "禁止用 Megger 直接測 Servo Drive / Encoder；DC Bus 需等待放電。", "terminals": ["L1", "L2", "L3", "U", "V", "W", "STO1", "STO2", "SON", "ENC"], "quiz": {"q": "Servo 不動時最應優先確認什麼？", "a": ["直接 Megger 測 Driver", "Drive Alarm / Ready / STO / Servo Enable 狀態", "換馬達", "短接 STO"], "c": 1, "e": "伺服系統應先從驅動器狀態與安全允許條件查起。"}}, {"id": 14, "title": "Stepper Motor 基本控制", "category": "馬達控制", "difficulty": "中階", "diagram": "stepper", "components": "Stepper Driver、A+/A-/B+/B-、Pulse、Dir", "function": "利用脈波控制步進角度與速度。", "principle": "Driver 按 Pulse / Dir 依序激磁各相繞組。", "sequence": "Enable → Pulse → Driver Phase Sequence → Step Motion", "measure": "斷電比較各相繞組阻值；確認 Pulse / Dir 訊號與 Driver Alarm。", "mistakes": "相組配錯、Pulse 電平規格錯、機械負載過大。", "safety": "不要在 Driver 通電時拔插 Motor Connector。", "terminals": ["PUL+", "PUL-", "DIR+", "DIR-", "A+", "A-", "B+", "B-"], "quiz": {"q": "步進馬達抖動但不正常轉動，常見原因是？", "a": ["相組接錯", "一定是軸承", "一定是 24V 太高", "OL 95-96"], "c": 0, "e": "A/B 相組配錯是步進馬達抖動、無力或不轉的常見原因之一。"}}, {"id": 15, "title": "24VDC 控制電源", "category": "配電", "difficulty": "基礎", "diagram": "psu", "components": "SMPS、Fuse、24V Load", "function": "供應 PLC、Relay、Sensor、Valve 等控制電源。", "principle": "SMPS 將 AC 轉換為穩定 DC24V。", "sequence": "AC Input → Rectify / Switch → DC24V Output → Loads", "measure": "先量輸入，再量空載 / 帶載輸出；容許值依設備規格。", "mistakes": "只量 PSU 端，不量負載端壓降。", "safety": "AC Input 區域為危險電壓，非合格人員不得帶電拆修。", "terminals": ["L", "N", "PE", "+V", "-V"], "quiz": {"q": "24V PSU 帶載掉到 19V，較合理的下一步是？", "a": ["直接調高到 30V", "比較空載與帶載並檢查負載/短路/容量", "短接 Fuse", "改成 AC 檔量 24V"], "c": 1, "e": "帶載掉壓常需區分 PSU 劣化、過載、下游短路或配線壓降。"}}, {"id": 16, "title": "Relay 中間繼電器控制", "category": "控制電路", "difficulty": "基礎", "diagram": "relay", "components": "Relay Coil、COM、NO、NC", "function": "訊號隔離、擴充接點、轉換負載。", "principle": "Coil 得電後，機械接點 COM 從 NC 切換到 NO。", "sequence": "Coil OFF → COM-NC\nCoil ON → COM-NO", "measure": "斷電量 Coil 與接點導通；通電量 Coil 額定電壓。", "mistakes": "COM / NO / NC 腳位認錯。", "safety": "先確認 Coil AC/DC 與額定電壓，不可只憑外觀。", "terminals": ["A1", "A2", "COM", "NO", "NC"], "quiz": {"q": "Relay Coil 已得額定電壓且吸合，但 NO 仍不導通，優先懷疑？", "a": ["接點異常", "馬達軸承", "三相相序", "PLC CPU"], "c": 0, "e": "Coil 已吸合而 NO 不導通，故障範圍集中在接點/機構。"}}, {"id": 17, "title": "電磁接觸器 MC 基本控制", "category": "接觸器", "difficulty": "基礎", "diagram": "contactor", "components": "A1/A2、L1/L2/L3、T1/T2/T3、Aux NO/NC", "function": "以小功率 Coil 控制較大功率負載。", "principle": "Coil 產生磁力吸合鐵心，帶動主接點與輔助接點。", "sequence": "A1-A2 Rated Voltage → Coil Magnetize → Main/Aux Contacts Change", "measure": "依 Coil 銘牌量 A1-A2；斷電量主接點、輔助接點與 Coil。", "mistakes": "把所有 MC 都假設為 DC24V。", "safety": "一定先確認 Coil Nameplate：24VDC / 24VAC / 110VAC / 220VAC / 其他。", "terminals": ["L1", "L2", "L3", "T1", "T2", "T3", "A1", "A2", "13", "14", "21", "22"], "quiz": {"q": "量測 MC A1-A2 前，最先要確認？", "a": ["主接點顏色", "Coil 銘牌額定與 AC/DC 型式", "馬達 RPM", "PLC 品牌"], "c": 1, "e": "A1-A2 的正常電壓取決於實際 Coil 規格，不能預設 24VDC。"}}, {"id": 18, "title": "PLC Digital Input", "category": "控制電路", "difficulty": "中階", "diagram": "plcdi", "components": "PLC DI、COM、Sensor / PB", "function": "將外部開關或 Sensor 狀態送入 PLC。", "principle": "輸入回路達到規定電壓 / 電流後 PLC 判定 ON。", "sequence": "Field Device → DI Terminal → Input Circuit → PLC Logic", "measure": "先核對 Source / Sink 與 COM，再量 DI 對 COM。", "mistakes": "NPN / PNP 與 COM 極性接反。", "safety": "不可將未知電壓直接灌入 PLC Input。", "terminals": ["X0", "X1", "COM", "24V", "0V"], "quiz": {"q": "Sensor 有輸出但 PLC Input 不亮，第一個合理檢查？", "a": ["換 PLC CPU", "核對 DI COM 與 NPN/PNP 接法並量端子電位", "換馬達", "短接輸入"], "c": 1, "e": "PLC DI 問題先確認配線型式、COM 及端子實際電位。"}}, {"id": 19, "title": "PLC Digital Output", "category": "控制電路", "difficulty": "中階", "diagram": "plcdo", "components": "PLC DO、COM、Relay / Load", "function": "PLC 控制 Relay、Valve、Lamp 等負載。", "principle": "Transistor / Relay / Triac Output 依程式命令切換。", "sequence": "Logic ON → Output Device ON → Field Load ON", "measure": "不能只看 LED；需量 Output-COM 與負載端。", "mistakes": "忽略 Output 型式與 COM 配置。", "safety": "避免超過單點與模組總額定電流。", "terminals": ["Y0", "Y1", "COM", "24V", "0V"], "quiz": {"q": "PLC Output LED ON，但 Relay 不吸合，較正確的查法？", "a": ["只看 LED 就判 PLC 正常", "量 Output-COM 與 Relay Coil 端實際電壓", "換馬達", "拆除 Fuse"], "c": 1, "e": "LED 只能表示邏輯狀態，仍需確認現場輸出端子與負載端。"}}, {"id": 20, "title": "NPN Sensor 配線", "category": "控制電路", "difficulty": "中階", "diagram": "npn", "components": "NPN Sensor、PLC Input", "function": "NPN Output 動作時將輸出拉向 0V。", "principle": "常見三線式 Brown=+24V、Blue=0V、Black=Output，但仍需核對 Datasheet。", "sequence": "Object Detect → Output Transistor ON → Output Low → PLC Input", "measure": "量供電與 Black Output 動作前後狀態。", "mistakes": "與 PNP 配線方式混用。", "safety": "線色慣例不能取代 Datasheet。", "terminals": ["Brown +24V", "Blue 0V", "Black OUT", "PLC X0", "PLC COM"], "quiz": {"q": "NPN 三線 Sensor 動作時 Output 常見行為是？", "a": ["拉向 0V", "固定 220VAC", "斷開 PE", "輸出 4-20mA"], "c": 0, "e": "NPN 通常是 sinking output，動作時把輸出拉低。"}}, {"id": 21, "title": "PNP Sensor 配線", "category": "控制電路", "difficulty": "中階", "diagram": "pnp", "components": "PNP Sensor、PLC Input", "function": "PNP Output 動作時將輸出拉向 +V。", "principle": "輸出晶體管導通後提供正電位給 PLC Input。", "sequence": "Object Detect → Output Transistor ON → Output High → PLC Input", "measure": "量供電與 Output 對 0V 的切換。", "mistakes": "PLC COM 配置與 PNP 不匹配。", "safety": "接線前核對 Sensor 與 PLC Input 規格。", "terminals": ["Brown +24V", "Blue 0V", "Black OUT", "PLC X0", "PLC COM"], "quiz": {"q": "PNP Sensor 動作時 Output 常見行為是？", "a": ["拉向 +V", "拉向 PE", "固定 0V", "輸出交流"], "c": 0, "e": "PNP 通常是 sourcing output，動作時提供正電位。"}}, {"id": 22, "title": "Limit Switch 限位控制", "category": "控制電路", "difficulty": "基礎", "diagram": "limit", "components": "Limit Switch NO/NC、PLC / Relay", "function": "檢知機構到位或提供硬體限位。", "principle": "機械動作改變 NO / NC 接點狀態。", "sequence": "Mechanism Touch → Contact Change → Control Stop / Permit", "measure": "斷電用導通檔確認接點動作。", "mistakes": "NO / NC 功能選錯、安裝位置過度壓迫。", "safety": "Limit Switch 不可當成人員安全防護的唯一元件。", "terminals": ["COM", "NO", "NC"], "quiz": {"q": "量 Limit Switch 接點最安全的基本方式？", "a": ["帶電用 Ω 檔", "斷電後用導通/Ω 檔確認 NO/NC", "直接短接", "Megger PLC"], "c": 1, "e": "導通與電阻模式應在斷電確認後使用。"}}, {"id": 23, "title": "Emergency Stop 回路", "category": "配電", "difficulty": "進階", "diagram": "estop", "components": "E-Stop、Safety Relay、Contactor / STO", "function": "緊急時使危險能量進入安全狀態。", "principle": "通常採 NC / 雙通道監控，由安全元件判斷斷線與接點異常。", "sequence": "E-STOP → Safety Input Open → Safety Output OFF → STO / Contactor OFF", "measure": "依安全電路設計與原廠程序驗證雙通道與 Reset。", "mistakes": "跨接 E-Stop、只靠一般 PLC 做安全功能。", "safety": "禁止旁路、短接或永久跨接安全回路。", "terminals": ["CH1", "CH2", "RESET", "13", "14", "23", "24", "EDM"], "quiz": {"q": "對 E-Stop 安全回路，下列哪項不可接受？", "a": ["依設計驗證雙通道", "永久跨接安全輸入", "驗證 Reset", "驗證 EDM"], "c": 1, "e": "安全回路不可為方便而永久旁路或跨接。"}}, {"id": 24, "title": "Safety Relay 基本實作", "category": "配電", "difficulty": "進階", "diagram": "safety", "components": "Safety Relay、E-Stop、Reset、Safety Output、EDM", "function": "監控安全輸入並輸出安全接點。", "principle": "雙通道一致性、回授與 Reset 條件成立才允許輸出。", "sequence": "Inputs OK + Feedback OK + Reset → Safety Output ON", "measure": "依 Datasheet 驗證安全輸入、Reset 與 EDM。", "mistakes": "EDM 未接、Reset 邏輯錯誤。", "safety": "Safety Relay 不可用一般 Relay 任意替代。", "terminals": ["S11", "S12", "S21", "S22", "RESET", "13", "14", "23", "24"], "quiz": {"q": "Safety Relay 的 EDM 常用來監控什麼？", "a": ["外部接觸器回授狀態", "馬達轉速", "三相相序", "Wi-Fi"], "c": 0, "e": "EDM 用於監控外部開關元件是否按預期釋放。"}}, {"id": 25, "title": "Solenoid Valve 控制", "category": "控制電路", "difficulty": "中階", "diagram": "solenoid", "components": "PLC / Relay、Solenoid Coil、Valve", "function": "以電磁線圈控制氣動或液壓閥芯切換。", "principle": "Coil 得電產生磁力驅動閥芯。", "sequence": "Command → Output → Coil Energize → Valve Shift", "measure": "先量 Coil 額定電壓；斷電可檢查 Coil 是否開路與機械卡滯。", "mistakes": "線圈電壓規格錯、只換 Coil 不查閥芯。", "safety": "氣壓 / 液壓殘壓需先釋放或鎖定。", "terminals": ["Coil +", "Coil -", "Valve P", "A", "B", "R"], "quiz": {"q": "Solenoid Coil 有額定電壓且有磁性，但閥不切換，下一步？", "a": ["查閥芯/機械卡滯與壓力條件", "換 PLC CPU", "調高電壓", "短接安全回路"], "c": 0, "e": "Coil 已動作時，應進一步檢查閥芯、污染、壓差與機構。"}}, {"id": 26, "title": "SSR 固態繼電器", "category": "配電", "difficulty": "中階", "diagram": "ssr", "components": "SSR Input、Output、Load、Heat Sink", "function": "以電子元件無接點切換負載。", "principle": "輸入側驅動光耦 / 功率元件，使輸出側導通。", "sequence": "Control Input ON → SSR Output Conduct → Load ON", "measure": "確認 Input Control，再在負載條件下判讀 Output；不可只用導通檔判定所有 SSR。", "mistakes": "把漏電流當故障、散熱不足。", "safety": "SSR OFF 仍可能有漏電或殘留電壓，不能視為安全隔離。", "terminals": ["IN+", "IN-", "OUT1", "OUT2"], "quiz": {"q": "SSR OFF 時仍量到些許電壓，可能原因之一？", "a": ["SSR 漏電/吸收回路", "一定是短路", "一定是 PLC 壞", "一定是 Fuse 壞"], "c": 0, "e": "SSR 可能存在漏電流或吸收回路，需在實際負載條件下判讀。"}}, {"id": 27, "title": "Heater 加熱控制", "category": "配電", "difficulty": "中階", "diagram": "heater", "components": "Heater、SSR / Contactor、Temperature Controller、Sensor", "function": "依溫控器命令調節加熱器。", "principle": "溫控器比較 PV 與 SV 後控制 SSR / Contactor。", "sequence": "Temp Low → Controller Output → Heater ON → Temp Rise", "measure": "斷電量 Heater 電阻 / 對地；核對 Sensor 型式與 SSR。", "mistakes": "SSR 壞短路造成持續加熱、Sensor 型式設定錯。", "safety": "需有獨立超溫保護，避免控制器單點失效造成火災。", "terminals": ["L", "N", "SSR IN", "SSR OUT", "Heater", "TC+/TC-"], "quiz": {"q": "Heater 持續加熱無法停止，應優先懷疑什麼？", "a": ["SSR 短路或控制輸出持續 ON", "一定是馬達缺相", "NPN Sensor", "OL 95-96"], "c": 0, "e": "加熱持續通常要檢查控制輸出與功率開關是否黏著/短路。"}}, {"id": 28, "title": "4–20mA 訊號迴路", "category": "儀表量測", "difficulty": "進階", "diagram": "loop420", "components": "Transmitter、Analog Input、Loop Power", "function": "以 4–20mA 傳送類比量測值。", "principle": "4mA 常代表量程下限、20mA 代表上限；實際定義依儀表設定。", "sequence": "Sensor → Transmitter → Loop Current → Analog Input", "measure": "量電流必須串聯；優先確認主動 / 被動迴路與端子定義。", "mistakes": "把電流表並聯造成短路。", "safety": "改接電流表前先確認回路與儀表保險絲。", "terminals": ["24V+", "TX+", "TX-", "AI+", "AI-", "0V"], "quiz": {"q": "量測 4–20mA 迴路電流時，電流表應如何接？", "a": ["並聯", "串聯", "接 PE", "不需接線"], "c": 1, "e": "電流表需要串入電流路徑，並聯可能造成短路。"}}, {"id": 29, "title": "0–10V 類比訊號", "category": "儀表量測", "difficulty": "中階", "diagram": "v010", "components": "Analog Output、Analog Input、0V Reference", "function": "以電壓表示類比命令或量測值。", "principle": "Signal 對參考 0V 的電壓對應量程。", "sequence": "AO → 0–10V → AI → Scaling", "measure": "電壓表並聯量 Signal-0V；確認共地與隔離方式。", "mistakes": "0V 參考錯誤、Shield 接法不當。", "safety": "不可將高電壓誤接到低壓 Analog Input。", "terminals": ["AO+", "AO- / 0V", "AI+", "AI- / 0V"], "quiz": {"q": "量 0–10V 訊號，萬用表電壓檔應怎麼接？", "a": ["串聯", "並聯在 Signal 與 0V", "跨接 Fuse", "接三相兩線"], "c": 1, "e": "電壓量測採並聯，量測 Signal 與參考 0V。"}}, {"id": 30, "title": "故障查修：MC 吸合但馬達不轉", "category": "故障查修", "difficulty": "進階", "diagram": "faultmc", "components": "MC、OL、Motor、3Φ Power", "function": "訓練由症狀逐步縮小主回路故障範圍。", "principle": "MC 吸合只代表控制 Coil 基本成立，不代表三相主回路與馬達正常。", "sequence": "MC ON → Check L1/L2/L3 → Check T1/T2/T3 → OL → Motor Terminals → Winding / Mechanical", "measure": "比較輸入與輸出三相電壓、OL 狀態及馬達端；必要時斷電量繞組平衡。", "mistakes": "看到 MC 吸合就直接判定 Motor 壞。", "safety": "三相帶電量測屬高風險作業，僅限合格受訓人員依程序執行。", "terminals": ["L1", "L2", "L3", "T1", "T2", "T3", "95", "96", "U", "V", "W"], "quiz": {"q": "MC 已吸合，L1/L2/L3 正常，但 T2 無輸出，最可能故障範圍？", "a": ["Start PB", "MC Coil", "MC 主接點其中一極", "PLC 程式"], "c": 2, "e": "MC 已吸合且輸入三相正常，單一輸出極缺失，優先查該極主接點/機構。"}}];
+const STORAGE_KEY='masa_electrodiag_training_v03';
+let memoryStore={attempts:[],wrong:{},favorites:{},examHistory:[]};
+function loadStore(){
+  try{const raw=localStorage.getItem(STORAGE_KEY);if(raw) memoryStore=Object.assign(memoryStore,JSON.parse(raw));}catch(e){}
+  return memoryStore;
+}
+function saveStore(){
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(memoryStore));}catch(e){}
+}
+loadStore();
+let trainingMode='learn', selectedTraining=trainingQuestions[0], currentCategory='全部', wrongOnly=false;
+let examState={questions:[],index:0,answers:{},seconds:0,timer:null,started:null};
+
+function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function stats(){
+  const total=memoryStore.attempts.length,correct=memoryStore.attempts.filter(x=>x.correct).length;
+  document.getElementById('statDone').textContent=total;
+  document.getElementById('statRate').textContent=total?Math.round(correct/total*100)+'%':'0%';
+  document.getElementById('statWrong').textContent=Object.keys(memoryStore.wrong||{}).length;
+  document.getElementById('statFav').textContent=Object.keys(memoryStore.favorites||{}).length;
+}
+function filteredQuestions(){
+  let arr=trainingQuestions.filter(q=>currentCategory==='全部'||q.category===currentCategory);
+  if(wrongOnly) arr=arr.filter(q=>memoryStore.wrong[q.id]);
+  return arr;
+}
+function renderQuestionList(){
+  const list=document.getElementById('questionList'),arr=filteredQuestions();
+  if(!arr.length){list.innerHTML='<div class="notice">目前這個篩選沒有題目。</div>';return;}
+  if(!arr.some(q=>q.id===selectedTraining.id)) selectedTraining=arr[0];
+  list.innerHTML=arr.map(q=>`<div class="qitem ${selectedTraining.id===q.id?'active':''}" onclick="selectTraining(${q.id})">
+    <div class="qitem-top"><b>${String(q.id).padStart(2,'0')}｜${esc(q.title)}</b><span class="source-tag">MASA 教學題</span></div>
+    <small>${esc(q.category)} · <span class="difficulty-tag">${esc(q.difficulty)}</span>${memoryStore.wrong[q.id]?' · <span class="state-tag bad">錯題</span>':''}${memoryStore.favorites[q.id]?' · ⭐':''}</small>
+  </div>`).join('');
+}
+function selectTraining(id){selectedTraining=trainingQuestions.find(q=>q.id===id)||trainingQuestions[0];renderQuestionList();renderTrainingDetail();}
+
+function svgText(x,y,t,cls=''){return `<text x="${x}" y="${y}" class="${cls}">${esc(t)}</text>`}
+function circuitSVG(q){
+  const c='#9fc5d8',a='#28d7ff',g='#44f0b1',y='#ffbf5a',r='#ff5f6d',bg='#06131f';
+  const wire=(x1,y1,x2,y2,col=c,w=2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="${w}" stroke-linecap="round"/>`;
+  const box=(x,y,w,h,label,sub='')=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="8" fill="#0a1b2a" stroke="#28506a"/><text x="${x+w/2}" y="${y+22}" fill="#eaf6ff" font-size="12" text-anchor="middle" font-weight="700">${esc(label)}</text>${sub?`<text x="${x+w/2}" y="${y+40}" fill="#86a2b8" font-size="10" text-anchor="middle">${esc(sub)}</text>`:''}`;
+  let s=`<svg viewBox="0 0 900 360" role="img" aria-label="${esc(q.title)} 電路示意圖"><rect width="900" height="360" fill="${bg}"/><text x="24" y="28" fill="${a}" font-size="13" font-weight="700">主迴路 / 控制迴路視覺化</text>`;
+  const type=q.diagram;
+  if(['dol','faultmc','overload','phaseloss'].includes(type)){
+    s+=box(60,70,100,54,'MCCB','3Φ POWER')+box(230,70,110,54,'MC','L1/L2/L3 → T1/T2/T3')+box(410,70,100,54,'OL','Thermal')+box(600,62,140,70,'MOTOR','U / V / W');
+    s+=wire(160,97,230,97,a,4)+wire(340,97,410,97,a,4)+wire(510,97,600,97,a,4);
+    s+=svgText(70,165,'CONTROL', 'x')+box(125,190,92,48,'STOP','NC')+box(270,190,92,48,'START','NO')+box(425,190,92,48,'OL 95-96','NC')+box(590,185,105,58,'MC COIL','A1 / A2');
+    s+=wire(55,214,125,214)+wire(217,214,270,214)+wire(362,214,425,214)+wire(517,214,590,214)+wire(695,214,800,214);
+    s+=wire(300,238,300,278,g)+wire(300,278,490,278,g)+wire(490,278,490,238,g);
+    s+=box(345,263,100,38,'MC 13-14','HOLD');
+  } else if(type==='selfhold'||type==='jog'||type==='timer'){
+    s+=svgText(55,66,'L / +24V')+svgText(790,66,'N / 0V');
+    s+=box(120,95,100,52,type==='jog'?'JOG':'STOP',type==='jog'?'NO':'NC');
+    if(type!=='jog') s+=box(285,95,100,52,type==='timer'?'START':'START','NO');
+    s+=box(600,90,115,62,type==='timer'?'TIMER / MC':'MC COIL','A1 / A2');
+    s+=wire(55,120,120,120)+wire(220,120,type==='jog'?600:285,120)+ (type==='jog'?'':wire(385,120,600,120))+wire(715,120,800,120);
+    if(type==='selfhold'){s+=box(300,205,115,48,'MC 13-14','AUX NO')+wire(250,120,250,229,g)+wire(250,229,300,229,g)+wire(415,229,475,229,g)+wire(475,229,475,120,g);}
+    if(type==='timer'){s+=box(350,205,115,48,'T-NO','DELAY')+box(555,205,115,48,'MC COIL','A1 / A2')+wire(465,229,555,229,y,3);}
+  } else if(type==='reverse'||type==='interlock'){
+    s+=box(80,65,120,55,'MC-F','FORWARD')+box(80,185,120,55,'MC-R','REVERSE')+box(360,100,130,80,'MOTOR','U / V / W');
+    s+=wire(200,92,360,125,a,4)+wire(200,212,360,155,r,4);
+    s+=box(560,70,110,48,'R-NC 21-22','F INTERLOCK')+box(560,185,110,48,'F-NC 21-22','R INTERLOCK');
+    s+=wire(670,94,800,94)+wire(670,209,800,209);
+    s+=svgText(80,290,'正轉與反轉接觸器需同時具備電氣互鎖與機械互鎖');
+  } else if(type==='stardelta'){
+    s+=box(60,65,110,52,'KM1','MAIN')+box(240,65,110,52,'KM2','STAR')+box(240,185,110,52,'KM3','DELTA')+box(465,80,180,110,'6-WIRE MOTOR','U1 V1 W1 / U2 V2 W2')+box(690,75,105,52,'TIMER','Y-Δ');
+    s+=wire(170,91,240,91,a,4)+wire(350,91,465,110,a,4)+wire(350,211,465,165,y,4);
+    s+=svgText(60,285,'KM2 OFF → Dead Time → KM3 ON', 'x')+svgText(60,315,'⚠ KM2 與 KM3 禁止同時閉合');
+  } else if(type==='relay'||type==='contactor'){
+    s+=box(75,80,130,68,type==='relay'?'RELAY COIL':'MC COIL','A1 / A2')+box(360,60,150,55,'COM → NO','13-14')+box(360,175,150,55,'COM → NC','21-22');
+    s+=wire(205,114,330,114,a,3)+wire(330,114,360,88,a,3)+wire(330,114,360,202,y,3);
+    s+=svgText(590,100,type==='relay'?'Coil ON：COM 切向 NO':'主接點 L1/L2/L3 → T1/T2/T3')+svgText(590,140,'Coil OFF：NC 為原始狀態');
+  } else if(type==='plcdi'||type==='plcdo'||type==='npn'||type==='pnp'){
+    s+=box(70,90,140,70,type==='plcdo'?'PLC OUTPUT':(type==='plcdi'?'PLC INPUT':'SENSOR'),'24VDC')+box(360,90,160,70,type==='plcdo'?'RELAY / LOAD':'PLC INPUT','COM / I/O')+box(660,90,130,70,'24V PSU','+24V / 0V');
+    s+=wire(210,125,360,125,a,3)+wire(520,125,660,125,g,3);
+    s+=svgText(80,230,type==='npn'?'NPN：動作時 Output 拉向 0V':type==='pnp'?'PNP：動作時 Output 拉向 +V':'先確認 COM 與 Source / Sink 型式');
+  } else if(type==='estop'||type==='safety'){
+    s+=box(70,80,130,70,'E-STOP','CH1 / CH2')+box(330,65,180,100,'SAFETY RELAY','Dual Channel + EDM')+box(650,80,130,70,'STO / MC','SAFE OFF');
+    s+=wire(200,110,330,100,r,3)+wire(200,140,330,130,r,3)+wire(510,115,650,115,g,3);
+    s+=svgText(70,235,'禁止旁路 / 永久跨接安全回路');
+  } else if(type==='servo'){
+    s+=box(70,70,150,80,'SERVO DRIVE','L1/L2/L3 · STO')+box(370,70,150,80,'SERVO MOTOR','U/V/W')+box(650,70,130,80,'ENCODER','Feedback');
+    s+=wire(220,110,370,110,a,4)+wire(520,110,650,110,g,3)+wire(650,145,220,145,g,2);
+    s+=svgText(75,235,'Power → STO OK → Ready → Servo ON → Motion');
+  } else if(type==='stepper'){
+    s+=box(70,80,150,80,'STEPPER DRIVER','PUL / DIR')+box(380,80,150,80,'STEPPER MOTOR','A+/A-/B+/B-')+box(675,80,120,80,'PLC','Pulse');
+    s+=wire(220,105,380,105,a,3)+wire(220,135,380,135,a,3)+wire(675,120,220,120,g,2);
+  } else if(type==='psu'){
+    s+=box(80,80,130,70,'AC INPUT','L / N / PE')+box(360,70,170,90,'SMPS','AC → DC24V')+box(680,80,130,70,'LOADS','PLC / SENSOR')+wire(210,115,360,115,a,3)+wire(530,115,680,115,g,3);
+    s+=svgText(80,230,'空載正常、帶載掉壓 → 檢查過載 / 短路 / PSU 劣化');
+  } else if(type==='solenoid'){
+    s+=box(70,85,140,70,'PLC / RELAY','OUTPUT')+box(355,85,140,70,'SOLENOID','COIL')+box(650,75,145,90,'VALVE','P-A/B-R')+wire(210,120,355,120,a,3)+wire(495,120,650,120,g,3);
+  } else if(type==='ssr'||type==='heater'){
+    s+=box(70,80,140,70,'CONTROL','PLC / PID')+box(350,70,150,90,type==='ssr'?'SSR':'SSR / MC','POWER SWITCH')+box(660,80,140,70,type==='heater'?'HEATER':'LOAD','POWER')+wire(210,115,350,115,a,3)+wire(500,115,660,115,y,4);
+    s+=svgText(70,230,'SSR OFF 仍可能有漏電 / 殘留電壓，不可視為安全隔離');
+  } else if(type==='loop420'){
+    s+=box(65,80,130,70,'24V PSU','LOOP POWER')+box(300,80,150,70,'TRANSMITTER','4–20mA')+box(600,80,150,70,'ANALOG INPUT','AI')+wire(195,115,300,115,a,3)+wire(450,115,600,115,g,3)+wire(750,145,110,145,c,2)+wire(110,145,65,115,c,2);
+    s+=svgText(70,230,'量電流：萬用表必須串聯進 Loop');
+  } else if(type==='v010'){
+    s+=box(90,85,150,70,'ANALOG OUT','0–10V')+box(390,85,150,70,'ANALOG IN','Signal / 0V')+wire(240,110,390,110,a,3)+wire(240,140,390,140,c,2)+svgText(90,220,'電壓表並聯量 Signal ↔ 0V');
+  } else if(type==='brake'){
+    s+=box(70,70,150,75,'MOTOR','U/V/W')+box(350,70,150,75,'RECTIFIER','AC → DC')+box(650,70,150,75,'BRAKE COIL','Release')+wire(220,108,350,108,a,3)+wire(500,108,650,108,g,3)+svgText(70,225,'垂直軸：解除煞車前必須先支撐負載');
+  } else if(type==='limit'){
+    s+=box(110,95,150,70,'LIMIT SWITCH','COM / NO / NC')+box(500,95,150,70,'PLC / RELAY','INPUT')+wire(260,130,500,130,a,3)+svgText(110,230,'斷電後使用導通檔確認接點動作');
+  } else {
+    s+=box(120,100,160,70,'CONTROL','SOURCE')+box(370,100,160,70,'DEVICE','FUNCTION')+box(620,100,160,70,'LOAD','OUTPUT')+wire(280,135,370,135,a,3)+wire(530,135,620,135,g,3);
+  }
+  s+=`<text x="24" y="340" fill="#67869d" font-size="10">教學示意圖：端子與額定值仍須依實際設備銘牌、圖紙與原廠資料確認。</text></svg>`;
+  return s;
+}
+function terminalDiagram(q){
+  return `<div class="terminal-grid">${q.terminals.map((t,i)=>`<div class="terminal"><b>${esc(t)}</b><span>Terminal ${i+1}</span></div>`).join('')}</div>`;
+}
+function faultScenario(q){
+ const m={2:'Start 按住時 MC 吸合；放開 Start 後立即掉開。',4:'正轉正常，反轉命令後 MC-R 不吸合。',6:'Star 啟動正常，但計時後 Delta 不吸合。',10:'馬達運轉數分鐘後 OL Trip。',17:'有啟動命令，但 MC 不吸合。',19:'PLC Output LED ON，但現場 Relay 不吸合。',23:'E-Stop 復歸後 Safety Relay 無法 Reset。',28:'AI 顯示 0mA，現場 Transmitter 有電。',30:'MC 已吸合，但馬達完全不轉。'};
+ return m[q.id]||`模擬「${q.title}」其中一個關鍵供電、接點或訊號異常。`;
+}
+function renderTrainingDetail(){
+ const q=selectedTraining,fav=!!memoryStore.favorites[q.id],wrong=!!memoryStore.wrong[q.id];
+ document.getElementById('trainingDetail').innerHTML=`<div class="training-title-row"><div><h3>${String(q.id).padStart(2,'0')}｜${esc(q.title)}</h3><div class="sub">${esc(q.category)} · ${esc(q.difficulty)} · <span class="source-tag">MASA 教學題（非官方考題）</span></div></div><div class="detail-actions"><button class="train-btn star ${fav?'active':''}" onclick="toggleFavorite(${q.id})">${fav?'★ 已收藏':'☆ 收藏題目'}</button>${wrong?'<span class="state-tag bad">錯題收藏</span>':''}</div></div>
+ <div class="info-grid">
+ <div class="info-card wide"><h4>電路圖視覺化</h4><div class="diagram-shell">${circuitSVG(q)}</div><div class="diagram-note">這是教學用途的功能電路圖，不取代機台正式 electrical drawing。</div></div>
+ <div class="info-card wide"><h4>配線端子圖</h4>${terminalDiagram(q)}</div>
+ <div class="info-card"><h4>使用元件 / 相關資料</h4><p>${esc(q.components)}</p></div>
+ <div class="info-card"><h4>主要功能</h4><p>${esc(q.function)}</p></div>
+ <div class="info-card wide"><h4>做動原理</h4><p>${esc(q.principle)}</p></div>
+ <div class="info-card wide"><h4>動作流程</h4><div class="sequence">${esc(q.sequence)}</div></div>
+ <div class="info-card"><h4>量測與確認</h4><p>${esc(q.measure)}</p></div>
+ <div class="info-card"><h4>常見錯誤</h4><p>${esc(q.mistakes)}</p></div>
+ ${trainingMode==='fault'?`<div class="info-card wide fault-prompt"><h4>🧪 故障插入模式</h4><p><b>模擬異常：</b>${esc(faultScenario(q))}</p><p>請先依症狀 → 量測 → 推論判斷，再查看題目解析。</p><button class="train-btn" onclick="practiceAnswer(${q.id})">開始故障判斷</button><div id="practiceArea" style="margin-top:8px"></div></div>`:''}
+ <div class="info-card wide safety-box"><h4>⚠ 注意事項 / SAFETY</h4><p><b>安全原則：</b>${esc(q.safety)}</p><p>Ω、Continuity、Diode、Capacitance 模式禁止帶電量測。高壓、三相、伺服 DC Bus 等作業僅限合格受訓人員依 LOTO、PPE、儀表 CAT 等級與現場 SOP 執行。</p></div>
+ </div>`;
+}
+function practiceAnswer(id){
+ const q=trainingQuestions.find(x=>x.id===id),area=document.getElementById('practiceArea');
+ area.innerHTML=`<div class="exam-question">${esc(q.quiz.q)}</div><div class="answer-options">${q.quiz.a.map((x,i)=>`<button onclick="gradePractice(${id},${i},this)">${String.fromCharCode(65+i)}. ${esc(x)}</button>`).join('')}</div><div class="exam-feedback" id="practiceFeedback"></div>`;
+}
+function gradePractice(id,choice,btn){
+ const q=trainingQuestions.find(x=>x.id===id),ok=choice===q.quiz.c;
+ document.querySelectorAll('#practiceArea .answer-options button').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected');
+ recordAttempt(q.id,ok,'fault');
+ const f=document.getElementById('practiceFeedback');f.className='exam-feedback show';f.innerHTML=`<b class="${ok?'ok':'bad'}">${ok?'回答正確':'回答錯誤'}</b><br>${esc(q.quiz.e)}`;
+ stats();renderQuestionList();
+}
+function toggleFavorite(id){if(memoryStore.favorites[id]) delete memoryStore.favorites[id]; else memoryStore.favorites[id]=true;saveStore();stats();renderQuestionList();renderTrainingDetail();}
+function recordAttempt(id,correct,mode){memoryStore.attempts.push({id,correct,mode,ts:new Date().toISOString()});if(correct) delete memoryStore.wrong[id]; else memoryStore.wrong[id]=true;saveStore();}
+function setTrainingMode(btn,mode){
+ trainingMode=mode;document.querySelectorAll('#modeTabs .train-btn').forEach(x=>x.classList.remove('active'));btn.classList.add('active');
+ document.getElementById('examPanel').classList.toggle('active',mode==='exam');
+ if(mode!=='exam') renderTrainingDetail();
+}
+function filterQuestions(btn,cat){wrongOnly=false;currentCategory=cat;document.querySelectorAll('#categoryTabs .train-btn').forEach(x=>x.classList.remove('active'));btn.classList.add('active');const a=filteredQuestions();if(a.length)selectedTraining=a[0];renderQuestionList();renderTrainingDetail();}
+function showWrongOnly(){wrongOnly=true;currentCategory='全部';const a=filteredQuestions();if(a.length)selectedTraining=a[0];renderQuestionList();renderTrainingDetail();document.getElementById('trainingCenter').scrollIntoView({behavior:'smooth'});}
+function showRecords(){
+ const p=document.getElementById('recordsPanel'),b=document.getElementById('recordsBody');p.classList.add('active');
+ const h=(memoryStore.examHistory||[]).slice().reverse();
+ b.innerHTML=h.length?h.map(x=>`<div class="record-row"><span class="date">${new Date(x.ts).toLocaleString()}</span><span>${esc(x.category)} · ${x.count} 題</span><b class="${x.score>=60?'ok':'bad'}">${x.score}%</b><span>${Math.round(x.seconds/60)}m</span></div>`).join(''):'<div class="notice">尚無模擬考試紀錄。</div>';
+}
+function resetTrainingData(){if(!confirm('確定清除答題紀錄、錯題、收藏與考試歷史？'))return;memoryStore={attempts:[],wrong:{},favorites:{},examHistory:[]};saveStore();stats();renderQuestionList();renderTrainingDetail();showRecords();}
+
+function shuffled(a){return [...a].sort(()=>Math.random()-.5)}
+function startTimedExam(){
+ const cat=document.getElementById('examCategory').value,count=Math.max(1,Math.min(trainingQuestions.length,Number(document.getElementById('examCount').value)||10)),mins=Math.max(1,Math.min(120,Number(document.getElementById('examMinutes').value)||10));
+ let pool=trainingQuestions.filter(q=>cat==='全部'||q.category===cat);
+ if(!pool.length)return;
+ examState.questions=shuffled(pool).slice(0,Math.min(count,pool.length)).map(q=>({...q,examOptions:shuffled(q.quiz.a.map((text,orig)=>({text,orig})))}));
+ examState.index=0;examState.answers={};examState.seconds=mins*60;examState.started=Date.now();
+ document.getElementById('examSetup').style.display='none';document.getElementById('examLive').style.display='block';
+ clearInterval(examState.timer);examState.timer=setInterval(()=>{examState.seconds--;updateTimer();if(examState.seconds<=0)submitTimedExam(true)},1000);
+ renderExamQuestion();updateTimer();
+}
+function updateTimer(){const s=Math.max(0,examState.seconds),m=Math.floor(s/60),r=s%60;document.getElementById('examTimer').textContent=String(m).padStart(2,'0')+':'+String(r).padStart(2,'0');}
+function renderExamQuestion(){
+ const q=examState.questions[examState.index];if(!q)return;
+ document.getElementById('examProgress').textContent=`第 ${examState.index+1} / ${examState.questions.length} 題`;
+ document.getElementById('examQuestion').textContent=q.quiz.q;
+ document.getElementById('examOptions').innerHTML=q.examOptions.map((o,i)=>`<button class="${examState.answers[q.id]===o.orig?'selected':''}" onclick="chooseExamAnswer(${q.id},${o.orig})">${String.fromCharCode(65+i)}. ${esc(o.text)}</button>`).join('');
+ document.getElementById('examFeedback').className='exam-feedback';
+ const fb=document.getElementById('examFavBtn');fb.classList.toggle('active',!!memoryStore.favorites[q.id]);fb.textContent=memoryStore.favorites[q.id]?'★ 已收藏':'☆ 收藏';
+}
+function chooseExamAnswer(id,orig){examState.answers[id]=orig;renderExamQuestion();}
+function prevExamQuestion(){if(examState.index>0){examState.index--;renderExamQuestion();}}
+function nextExamQuestion(){if(examState.index<examState.questions.length-1){examState.index++;renderExamQuestion();}}
+function toggleExamFavorite(){const q=examState.questions[examState.index];if(q){if(memoryStore.favorites[q.id])delete memoryStore.favorites[q.id];else memoryStore.favorites[q.id]=true;saveStore();stats();renderExamQuestion();renderQuestionList();}}
+function submitTimedExam(auto){
+ if(!examState.questions.length)return;
+ if(!auto&&!confirm('確定交卷？未作答題目會以錯誤計算。'))return;
+ clearInterval(examState.timer);examState.timer=null;
+ let correct=0;
+ examState.questions.forEach(q=>{const ok=examState.answers[q.id]===q.quiz.c;if(ok)correct++;recordAttempt(q.id,ok,'exam');});
+ const score=Math.round(correct/examState.questions.length*100),elapsed=Math.max(1,Math.round((Date.now()-examState.started)/1000));
+ memoryStore.examHistory.push({ts:new Date().toISOString(),category:document.getElementById('examCategory').value,count:examState.questions.length,score,seconds:elapsed});saveStore();
+ document.getElementById('examQuestion').innerHTML=`考試完成：<span class="${score>=60?'ok':'bad'}">${score} 分</span>`;
+ document.getElementById('examOptions').innerHTML=`<div class="notice">答對 ${correct} / ${examState.questions.length} 題。${auto?'時間到，自動交卷。':''} 錯題已加入「錯題複習」。</div>`;
+ document.getElementById('examFeedback').className='exam-feedback show';document.getElementById('examFeedback').innerHTML=`<b>解析方式：</b>回到學習模式或錯題複習，可查看每一題的電路圖、端子圖、原理與注意事項。`;
+ document.getElementById('examProgress').textContent='已交卷';document.getElementById('examTimer').textContent='DONE';
+ stats();renderQuestionList();
+ setTimeout(()=>{document.getElementById('examSetup').style.display='block';document.getElementById('examLive').style.display='none';},3500);
+}
+stats();renderQuestionList();renderTrainingDetail();
+
+</script>
+<script src="./assets/data.js"></script>
+<script src="./assets/qr-vendor.js"></script>
+<script src="./assets/app.js"></script>
+<script src="./assets/engineering-engine.js"></script>
+<script src="./assets/engineering-ui.js"></script>
+<script src="./assets/cable.js"></script>
+<script src="./assets/circuit-machine.js"></script>
+<script src="./assets/circuit-diagrams.js"></script>
+<script src="./assets/field-ui.js"></script>
+<script src="./assets/field-zip.js"></script>
+<script src="./assets/field-provider.js"></script>
+<script src="./assets/field-records.js"></script>
+<script src="./assets/field-records-ui.js"></script>
+<script src="./assets/knowledge-ui.js"></script>
+<script src="./assets/cable-ui.js"></script>
+<script src="./assets/agent.js"></script>
+<script src="./assets/agent-ui.js"></script>
+<script src="./assets/free-ai.js"></script>
+<script src="./assets/free-ai-ui.js"></script>
+<script src="./assets/ai-chat-core.js"></script>
+<script src="./assets/ai-vault.js"></script>
+<script src="./assets/ai-chat-ui.js"></script>
+<script src="./assets/offline-status.js"></script>
+<script src="./assets/mobile-shell.js"></script>
+<script src="./assets/mobile-launcher.js"></script>
+<script src="./assets/android-native.js"></script>
+</body>
+</html>

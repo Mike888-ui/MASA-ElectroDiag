@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#081526"><meta name="robots" content="noindex"><title>MASA 查修｜Android iOS 一鍵啟動</title>
+<link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;min-height:100dvh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 80% 5%,#193c57 0,#091829 43%,#06101d 100%);color:#effaff;font-family:system-ui,"Noto Sans TC",sans-serif}
+main{max-width:490px;width:100%;padding:30px 24px;border:1px solid #2a6789;border-radius:22px;background:#0a1b2ccc;box-shadow:0 16px 38px #0008;text-align:center}h1{font-size:24px;margin:12px 0 8px}p{color:#b0cce0;line-height:1.7;font-size:14px}.logo{display:grid;place-items:center;margin:0 auto;width:66px;height:66px;border-radius:16px;background:#124768;border:1px solid #35bbde;font-weight:900;color:#bcefff;letter-spacing:.1em}
+a{display:block;padding:14px 12px;border-radius:11px;text-decoration:none;font-weight:800;color:#06121e;background:#53d8f8;margin:20px 0 14px}small{color:#8bb2ca;line-height:1.6;display:block}details{text-align:left;border-top:1px solid #21435a;padding:12px 2px;font-size:13px;color:#c9e6f8}summary{cursor:pointer;font-weight:750}li{margin:8px 0;line-height:1.5}.warn{color:#ffd497;font-size:12px;margin-top:16px}
+</style></head><body><main>
+<div class="logo">MASA</div><h1>電控查修 · 多家 AI Agent</h1>
+<p>Android / iPhone / 電腦使用同一套完整介面。離線電控查修已內建於網站離線快取；線上 AI 需網路。</p>
+<a id="go" href="./index.html">🌐 一鍵開啟 MASA 瀏覽器介面</a>
+<small>本頁必須透過已部署的 HTTPS 網站使用，不是 Google Drive 的 ZIP 或 HTML 預覽。</small>
+<details><summary>📱 如何加到 Android／iOS 主畫面？</summary>
+<ol><li>Android：Chrome 開啟 MASA 網址 → ⋮ →「加到主畫面」或「安裝應用程式」。</li>
+<li>iPhone：Safari 開啟 MASA 網址 → 分享 →「加入主畫面」。若要直接開 Safari（保留網址列），關閉「以網頁 App 開啟」；若要全螢幕介面則保持開啟。</li>
+<li>點主畫面 MASA 圖示啟動。安裝完先確認離線就緒，再在飛航模式測試。</li></ol></details>
+<p class="warn" id="warn" hidden>目前不是 HTTPS 網站。Google Drive 只會顯示檔案預覽，不能直接當成手機 App 的執行網址；請先部署網站。</p>
+</main><script>
+(function(){
+ const local = location.protocol !== 'https:' && !(location.hostname === 'localhost' || location.hostname === '127.0.0.1');
+ const warn = document.getElementById('warn');
+ if(local){warn.hidden=false;return;}
+ // This web entry can be bookmarked / shared directly and resolves to the same canonical app.
+ // Do not redirect before a gesture: it prevents accidental navigation in embedded previews.
+})();
+</script></body></html>

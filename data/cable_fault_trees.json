@@ -1,0 +1,1973 @@
+[
+  {
+    "tree_id": "CABLE-T001",
+    "category": "CABLE / WIRING",
+    "symptom": "Cable Open Circuit",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Cable Open Circuit：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Cable Open Circuit：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Cable Open Circuit：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Cable Open Circuit：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "隔離後比較電纜兩端導通與端點標籤",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Cable Open Circuit：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Cable Open Circuit：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "導體斷裂／端子開路",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "隔離後比較電纜兩端導通與端點標籤",
+    "repair": "確認故障區段後按核准規格修復；導體斷裂／端子開路 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T002",
+    "category": "CABLE / WIRING",
+    "symptom": "Cable Short Circuit",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Cable Short Circuit：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Cable Short Circuit：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Cable Short Circuit：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Cable Short Circuit：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "隔離兩端設備後檢查線間短路",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Cable Short Circuit：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Cable Short Circuit：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "導體絕緣損傷／跨線",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "隔離兩端設備後檢查線間短路",
+    "repair": "確認故障區段後按核准規格修復；導體絕緣損傷／跨線 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T003",
+    "category": "CABLE / WIRING",
+    "symptom": "Phase-to-Phase Short",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Phase-to-Phase Short：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Phase-to-Phase Short：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Phase-to-Phase Short：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Phase-to-Phase Short：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "停機後隔離三相各線並比較線間",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Phase-to-Phase Short：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Phase-to-Phase Short：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "相間絕緣破損",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "停機後隔離三相各線並比較線間",
+    "repair": "確認故障區段後按核准規格修復；相間絕緣破損 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T004",
+    "category": "CABLE / WIRING",
+    "symptom": "Phase-to-Ground Fault",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Phase-to-Ground Fault：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Phase-to-Ground Fault：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Phase-to-Ground Fault：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Phase-to-Ground Fault：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "隔離敏感設備後依核准測試程序查對地",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Phase-to-Ground Fault：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Phase-to-Ground Fault：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "導體對地絕緣失效",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "隔離敏感設備後依核准測試程序查對地",
+    "repair": "確認故障區段後按核准規格修復；導體對地絕緣失效 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T005",
+    "category": "CABLE / WIRING",
+    "symptom": "Cable Insulation Degradation",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Cable Insulation Degradation：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Cable Insulation Degradation：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Cable Insulation Degradation：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Cable Insulation Degradation：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "確認測試電壓與接受值依該設備原廠與現場規範",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Cable Insulation Degradation：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Cable Insulation Degradation：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "絕緣老化／受潮",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "確認測試電壓與接受值依該設備原廠與現場規範",
+    "repair": "確認故障區段後按核准規格修復；絕緣老化／受潮 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T006",
+    "category": "CABLE / WIRING",
+    "symptom": "Cable Overheating",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Cable Overheating：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Cable Overheating：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Cable Overheating：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Cable Overheating：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "觀察表面變色並記錄負載電流與環境溫度",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Cable Overheating：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Cable Overheating：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "過載／導體損傷／散熱不良",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "觀察表面變色並記錄負載電流與環境溫度",
+    "repair": "確認故障區段後按核准規格修復；過載／導體損傷／散熱不良 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T007",
+    "category": "CABLE / WIRING",
+    "symptom": "Terminal Overheating",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Terminal Overheating：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Terminal Overheating：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Terminal Overheating：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Terminal Overheating：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "停機後檢查端子變色、壓接與接觸面",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Terminal Overheating：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Terminal Overheating：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "接點接觸電阻偏高",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "停機後檢查端子變色、壓接與接觸面",
+    "repair": "確認故障區段後按核准規格修復；接點接觸電阻偏高 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T008",
+    "category": "CABLE / WIRING",
+    "symptom": "Loose Terminal",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Loose Terminal：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Loose Terminal：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Loose Terminal：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Loose Terminal：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "停機驗電後核對端子緊固與原廠扭力",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Loose Terminal：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Loose Terminal：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "端子鬆動",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "停機驗電後核對端子緊固與原廠扭力",
+    "repair": "確認故障區段後按核准規格修復；端子鬆動 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T009",
+    "category": "CABLE / WIRING",
+    "symptom": "Poor Crimp",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Poor Crimp：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Poor Crimp：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Poor Crimp：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Poor Crimp：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "停機驗電後檢查壓接變形與規格",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Poor Crimp：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Poor Crimp：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "壓接不良",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "停機驗電後檢查壓接變形與規格",
+    "repair": "確認故障區段後按核准規格修復；壓接不良 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T010",
+    "category": "CABLE / WIRING",
+    "symptom": "Cable Voltage Drop",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Cable Voltage Drop：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Cable Voltage Drop：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Cable Voltage Drop：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Cable Voltage Drop：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "在合格安全條件下比較 SOURCE 與 LOAD 電位",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Cable Voltage Drop：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Cable Voltage Drop：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "線路／接頭壓降",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "在合格安全條件下比較 SOURCE 與 LOAD 電位",
+    "repair": "確認故障區段後按核准規格修復；線路／接頭壓降 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T011",
+    "category": "CABLE / WIRING",
+    "symptom": "Phase Loss",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Phase Loss：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Phase Loss：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Phase Loss：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Phase Loss：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "逐段比對 MC、OL、端子與馬達線端三相",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Phase Loss：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Phase Loss：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "單相導體／接點開路",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "逐段比對 MC、OL、端子與馬達線端三相",
+    "repair": "確認故障區段後按核准規格修復；單相導體／接點開路 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T012",
+    "category": "CABLE / WIRING",
+    "symptom": "Phase Imbalance",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Phase Imbalance：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Phase Imbalance：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Phase Imbalance：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Phase Imbalance：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "比較三相電流與電壓，先排除負載因素",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Phase Imbalance：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Phase Imbalance：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "相間接點／線路不平衡",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "比較三相電流與電壓，先排除負載因素",
+    "repair": "確認故障區段後按核准規格修復；相間接點／線路不平衡 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T013",
+    "category": "CABLE / WIRING",
+    "symptom": "Wrong Cable Size",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Wrong Cable Size：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Wrong Cable Size：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Wrong Cable Size：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Wrong Cable Size：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對銘牌負載、敷設方式與核准設計",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Wrong Cable Size：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Wrong Cable Size：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "導體截面選用不符設計",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "核對銘牌負載、敷設方式與核准設計",
+    "repair": "確認故障區段後按核准規格修復；導體截面選用不符設計 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T014",
+    "category": "CABLE / WIRING",
+    "symptom": "Cable Mechanical Damage",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Cable Mechanical Damage：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Cable Mechanical Damage：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Cable Mechanical Damage：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Cable Mechanical Damage：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "停機檢查夾傷、磨耗與最小彎曲區",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Cable Mechanical Damage：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Cable Mechanical Damage：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "外力損傷",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "停機檢查夾傷、磨耗與最小彎曲區",
+    "repair": "確認故障區段後按核准規格修復；外力損傷 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T015",
+    "category": "CABLE / WIRING",
+    "symptom": "Water Ingress",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Water Ingress：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Water Ingress：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Water Ingress：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Water Ingress：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "停機檢查接頭密封與受潮跡象",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Water Ingress：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Water Ingress：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "水氣侵入",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "停機檢查接頭密封與受潮跡象",
+    "repair": "確認故障區段後按核准規格修復；水氣侵入 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T016",
+    "category": "CABLE / WIRING",
+    "symptom": "Shield Ground Fault",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Shield Ground Fault：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Shield Ground Fault：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Shield Ground Fault：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Shield Ground Fault：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "隔離後依 EMC 圖面核對屏蔽端接",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Shield Ground Fault：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Shield Ground Fault：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "屏蔽誤接／對地異常",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "隔離後依 EMC 圖面核對屏蔽端接",
+    "repair": "確認故障區段後按核准規格修復；屏蔽誤接／對地異常 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T017",
+    "category": "CABLE / WIRING",
+    "symptom": "Shield Open",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Shield Open：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Shield Open：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Shield Open：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Shield Open：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "停機隔離後檢查屏蔽連續性",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Shield Open：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Shield Open：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "屏蔽層斷裂",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "停機隔離後檢查屏蔽連續性",
+    "repair": "確認故障區段後按核准規格修復；屏蔽層斷裂 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T018",
+    "category": "CABLE / WIRING",
+    "symptom": "Control Cable Noise",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Control Cable Noise：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Control Cable Noise：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Control Cable Noise：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Control Cable Noise：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "記錄干擾發生時機並檢查與動力線分隔",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Control Cable Noise：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Control Cable Noise：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "電磁干擾耦合",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "記錄干擾發生時機並檢查與動力線分隔",
+    "repair": "確認故障區段後按核准規格修復；電磁干擾耦合 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T019",
+    "category": "CABLE / WIRING",
+    "symptom": "Signal Interference",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Signal Interference：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Signal Interference：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Signal Interference：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Signal Interference：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "比較 SOURCE 與 INPUT 訊號趨勢",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Signal Interference：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Signal Interference：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "屏蔽／接地／路由干擾",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "比較 SOURCE 與 INPUT 訊號趨勢",
+    "repair": "確認故障區段後按核准規格修復；屏蔽／接地／路由干擾 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T020",
+    "category": "CABLE / WIRING",
+    "symptom": "Encoder Cable Fault",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Encoder Cable Fault：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Encoder Cable Fault：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Encoder Cable Fault：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Encoder Cable Fault：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對回授插頭、供電與 A/B/Z 訊號",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Encoder Cable Fault：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Encoder Cable Fault：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "回授線纜／接頭異常",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "核對回授插頭、供電與 A/B/Z 訊號",
+    "repair": "確認故障區段後按核准規格修復；回授線纜／接頭異常 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T021",
+    "category": "CABLE / WIRING",
+    "symptom": "24V Cable Voltage Drop",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "24V Cable Voltage Drop：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "24V Cable Voltage Drop：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "24V Cable Voltage Drop：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "24V Cable Voltage Drop：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "比較 PSU、保險絲、分配、末端與負載電流",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "24V Cable Voltage Drop：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "24V Cable Voltage Drop：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "24V 線纜或端子壓降",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "比較 PSU、保險絲、分配、末端與負載電流",
+    "repair": "確認故障區段後按核准規格修復；24V 線纜或端子壓降 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T022",
+    "category": "CABLE / WIRING",
+    "symptom": "RS-485 Cable Fault",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "RS-485 Cable Fault：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "RS-485 Cable Fault：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "RS-485 Cable Fault：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "RS-485 Cable Fault：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 A/B 標記、終端與接地圖面",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "RS-485 Cable Fault：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "RS-485 Cable Fault：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "通訊線反接／開路／屏蔽異常",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "核對 A/B 標記、終端與接地圖面",
+    "repair": "確認故障區段後按核准規格修復；通訊線反接／開路／屏蔽異常 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T023",
+    "category": "CABLE / WIRING",
+    "symptom": "Analog Signal Cable Fault",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Analog Signal Cable Fault：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Analog Signal Cable Fault：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Analog Signal Cable Fault：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Analog Signal Cable Fault：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "比較傳送端與 AI 端量測證據",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Analog Signal Cable Fault：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Analog Signal Cable Fault：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "類比訊號線開路／干擾",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "比較傳送端與 AI 端量測證據",
+    "repair": "確認故障區段後按核准規格修復；類比訊號線開路／干擾 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T024",
+    "category": "CABLE / WIRING",
+    "symptom": "4-20mA Loop Cable Fault",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "4-20mA Loop Cable Fault：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "4-20mA Loop Cable Fault：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "4-20mA Loop Cable Fault：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "4-20mA Loop Cable Fault：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "比較迴路供電與輸入電流，避免帶電改接",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "4-20mA Loop Cable Fault：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "4-20mA Loop Cable Fault：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "迴路開路／線纜接觸不良",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "比較迴路供電與輸入電流，避免帶電改接",
+    "repair": "確認故障區段後按核准規格修復；迴路開路／線纜接觸不良 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T025",
+    "category": "CABLE / WIRING",
+    "symptom": "0-10V Cable Fault",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "0-10V Cable Fault：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "0-10V Cable Fault：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "0-10V Cable Fault：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "0-10V Cable Fault：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 0V reference 與訊號端",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "0-10V Cable Fault：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "0-10V Cable Fault：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "參考地／訊號線異常",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "核對 0V reference 與訊號端",
+    "repair": "確認故障區段後按核准規格修復；參考地／訊號線異常 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T026",
+    "category": "CABLE / WIRING",
+    "symptom": "Motor Cable Fault",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "Motor Cable Fault：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "Motor Cable Fault：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "Motor Cable Fault：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "Motor Cable Fault：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "比較驅動輸出端與馬達接線盒證據",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "Motor Cable Fault：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "Motor Cable Fault：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "動力電纜／接頭故障",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "比較驅動輸出端與馬達接線盒證據",
+    "repair": "確認故障區段後按核准規格修復；動力電纜／接頭故障 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  },
+  {
+    "tree_id": "CABLE-T027",
+    "category": "CABLE / WIRING",
+    "symptom": "VFD Motor Cable EMC Fault",
+    "precondition": "確認設備、回路、電壓等級、接線圖與 MANUAL INPUT 資料來源",
+    "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。",
+    "steps": [
+      {
+        "step_id": "S1",
+        "question": "VFD Motor Cable EMC Fault：SOURCE 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 SOURCE 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S2",
+        "fail_path": "停機隔離，標記 SOURCE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S2",
+        "question": "VFD Motor Cable EMC Fault：PROTECTION 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 PROTECTION 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S3",
+        "fail_path": "停機隔離，標記 PROTECTION 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S3",
+        "question": "VFD Motor Cable EMC Fault：TERMINAL 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 TERMINAL 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S4",
+        "fail_path": "停機隔離，標記 TERMINAL 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S4",
+        "question": "VFD Motor Cable EMC Fault：CABLE 是否符合核准圖面與該型號規範？",
+        "measurement": "停機後依驅動器手冊檢查屏蔽與路由",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S5",
+        "fail_path": "停機隔離，標記 CABLE 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S5",
+        "question": "VFD Motor Cable EMC Fault：CONNECTOR 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 CONNECTOR 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "S6",
+        "fail_path": "停機隔離，標記 CONNECTOR 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      },
+      {
+        "step_id": "S6",
+        "question": "VFD Motor Cable EMC Fault：LOAD 是否符合核准圖面與該型號規範？",
+        "measurement": "核對 LOAD 上下游、設備圖面與人工量測記錄",
+        "condition": "依銘牌／圖面／原廠文件與相鄰節點比較；不使用通用固定閾值",
+        "pass_path": "完成檢查，保留其他可能原因",
+        "fail_path": "停機隔離，標記 LOAD 異常並沿上游定位",
+        "safety": "STOP → ISOLATE → LOTO → VERIFY ZERO ENERGY；確認回灌與儲能。帶電檢查僅限受訓人員、PPE、CAT 適級儀表。絕緣測試前完全隔離 VFD、Servo、PLC、Sensor、Encoder 與 PCB。不可旁路安全功能。"
+      }
+    ],
+    "root_causes": [
+      "PWM 干擾／屏蔽配置不符",
+      "需以現場證據排除設備端與負載端因素"
+    ],
+    "next_test": "停機後依驅動器手冊檢查屏蔽與路由",
+    "repair": "確認故障區段後按核准規格修復；PWM 干擾／屏蔽配置不符 需人工查證",
+    "references": [
+      "MASA 教學規則；特定型號以已核准的 OEM 文件為準"
+    ],
+    "source_type": "MASA ENGINEERING RULE"
+  }
+]

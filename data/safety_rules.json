@@ -1,0 +1,44 @@
+[
+  {
+    "id": "OFFLINE-METER",
+    "modes": [
+      "resistance",
+      "continuity",
+      "diode",
+      "capacitance",
+      "insulation",
+      "pcb_resistance",
+      "winding_resistance",
+      "coil_resistance"
+    ],
+    "requires": [
+      "equipmentEnergized=false",
+      "loto=true",
+      "zeroVerified=true",
+      "storedEnergyDischarged=true"
+    ]
+  },
+  {
+    "id": "LIVE-METER",
+    "modes": [
+      "live_voltage",
+      "live_current"
+    ],
+    "requires": [
+      "trained=true",
+      "catRated=true",
+      "ppe=true"
+    ]
+  },
+  {
+    "id": "INSULATION-BLOCK",
+    "targets": [
+      "VFD",
+      "Servo",
+      "PLC",
+      "Encoder",
+      "PCB"
+    ],
+    "action": "DENY"
+  }
+]
